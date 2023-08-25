@@ -1,8 +1,9 @@
-
 const Home = () => {
-  
+  // JSX
   return (
-    <div>Home</div>
+    <div className="todo-container">
+      <h1>Home</h1>
+    </div>
   )
 }
 
