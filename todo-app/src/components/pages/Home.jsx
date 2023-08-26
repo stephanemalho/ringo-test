@@ -11,11 +11,14 @@ const Home = () => {
   const [description, setDescription] = useState("");
 
   // BEHAVIOR
+
+  // @TODO EXTRACT TO CUSTOM HOOK
   const fetchTasks = async () => {
     const data = await getTasks();
     setTasks(data);
   };
 
+  // TODO EXTRACT TO CUSTOM HOOK
   const handleTaskCreate = async () => {
     try {
       const newTaskData = taskData(newTask, description);
