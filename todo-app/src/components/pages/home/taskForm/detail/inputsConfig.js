@@ -14,3 +14,13 @@ export const getTextInputConfig = [
     placeholder: "Entrez une description de la tache",
   }
 ];
+
+export const getDateInputConfig = [
+  {
+    key: "2",
+    id: "2",
+    name: "end_date",
+    type: "date",
+    placeholder: "Date de début",
+  },
+];

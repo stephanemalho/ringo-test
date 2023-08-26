@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { newTaskToAdd, EmptyTask } from "../../../../utils";
+import {  EmptyTask, checkSelectedDate, newTaskToAdd } from "../../../../utils";
 import { getTasks } from "../../../../api/tasksAPI";
 import InputsTask from "./detail/InputsTask";
-import { getTextInputConfig } from "./detail/inputsConfig";
+import { getDateInputConfig, getTextInputConfig } from "./detail/inputsConfig";
 
 const HomeForm = ({ setTasks }) => {
   // STATE
@@ -18,9 +18,11 @@ const HomeForm = ({ setTasks }) => {
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
+    checkSelectedDate(newTask, setNewTask);
     await newTaskToAdd(newTask, setTasks, setNewTask);
     await fetchTasks();
-  };
+    console.log("newTask", newTask);
+  };  
 
   useEffect(() => {
     fetchTasks();
@@ -50,9 +52,22 @@ const HomeForm = ({ setTasks }) => {
           placeholder={input.placeholder}
         />
       ))}
+      {getDateInputConfig.map((input) => (
+        <InputsTask
+          key={input.id}
+          onChange={handleChange}
+          id={input.id}
+          type={input.type}
+          name={input.name}
+          value={input.value}
+          placeholder={input.placeholder}
+        />
+      ))}
       <button type="submit">Add task</button>
     </form>
   );
 };
 
 export default HomeForm;
+
+
