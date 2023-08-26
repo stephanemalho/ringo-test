@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { createTask, getTasks } from "../../api/tasksAPI";
-import { taskData } from "../../utils";
+import { createTask, getTasks } from "../../../api/tasksAPI";
+import { taskData } from "../../../utils";
+import Tasks from "./tasks/Tasks";
 
 const Home = () => {
   // STATE
@@ -46,7 +47,6 @@ const Home = () => {
   return (
     <div className="todo-container">
       <h1>Home</h1>
-      <p>{tasks?.[0]?.label}</p>
       <from>
         <label htmlFor="new-task">New task</label>
         <input
@@ -64,12 +64,7 @@ const Home = () => {
         />
         <button onClick={handleTaskCreate}>Add task</button>
       </from>
-      {tasks.map((task) => (
-        <div key={task.id}>
-          <p>{task.label}</p>
-          <p>{task.description}</p>
-        </div>
-      ))}
+      <Tasks tasks={tasks} />
     </div>
   );
 };
