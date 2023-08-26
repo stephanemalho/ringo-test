@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createTask, getTasks } from "../../api/tasksAPI";
+import { taskData } from "../../utils";
 
 const Home = () => {
   // STATE
@@ -17,12 +18,7 @@ const Home = () => {
 
   const handleTaskCreate = async () => {
     try {
-      const newTaskData = {
-        label: newTask,
-        description: description,
-        start_date: new Date().toISOString(),
-        end_date: "",
-      };
+      const newTaskData = taskData(newTask, description);
       const createdTask = await createTask(newTaskData);
       setTasks((prevTasks) => [...prevTasks, createdTask]); // Utilisation du callback
       setNewTask("");
@@ -31,7 +27,6 @@ const Home = () => {
       console.error("Erreur lors de la création de la tâche :", error);
     }
   };
-  
 
   useEffect(() => {
     fetchTasks();
