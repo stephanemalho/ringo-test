@@ -10,7 +10,7 @@ export const taskData = (newTask) => {
   return newTaskData;
 };
 
-export  const taskToAdd = {
+export  const EmptyTask = {
   label: "",
   description: "",
 };
@@ -20,10 +20,8 @@ export async function newTaskToAdd(newTask, setTasks, setNewTask) {
     const newTaskData = taskData(newTask);
     const createdTask = await createTask(newTaskData);
     setTasks((prevTasks) => [...prevTasks, createdTask]); // Utilisation du callback
-    console.log("task value", newTaskData);
-    console.log("Tâche créée :", createdTask);
 
-    setNewTask("");
+    setNewTask(EmptyTask);
   } catch (error) {
     console.error("Erreur lors de la création de la tâche :", error);
   }
