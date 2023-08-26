@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { createTask, getTasks } from "../../../api/tasksAPI";
 import { taskData } from "../../../utils";
 import Tasks from "./tasks/Tasks";
+import Title from "../../reusableUI/Title";
+import { title } from "../../../constants/constants";
 
 const Home = () => {
   // STATE
@@ -46,7 +48,7 @@ const Home = () => {
   // JSX
   return (
     <div className="todo-container">
-      <h1>Home</h1>
+      <Title label={title} />
       <from>
         <label htmlFor="new-task">New task</label>
         <input
