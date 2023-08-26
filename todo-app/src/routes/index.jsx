@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from '../components/pages/Home'
 import Error from '../components/pages/Error'
+import Home from '../components/pages/Home/Home'
 
 const Path = () => {
   return (
