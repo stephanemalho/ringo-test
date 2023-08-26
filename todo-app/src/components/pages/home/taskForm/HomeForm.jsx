@@ -16,7 +16,6 @@ const HomeForm = ({ setTasks }) => {
     setTasks(data);
   };
 
-  // TODO EXTRACT TO CUSTOM HOOK
   const handleTaskCreate = async (event) => {
     event.preventDefault();
     await newTaskToAdd(newTask, setTasks, setNewTask);
@@ -34,7 +33,6 @@ const HomeForm = ({ setTasks }) => {
       ...prevTask,
       [name]: value,
     }));
-    console.log("newTask", newTask);
   }
 
   // JSX
@@ -43,9 +41,9 @@ const HomeForm = ({ setTasks }) => {
       {getTextInputConfig.map((input) => (
         <InputsTask
           key={input.id}
-          value={newTask[input.name]} // Pass the value directly from newTask
+          value={newTask[input.name]}
           onChange={handleChange}
-          labelValue={input.name} // Using placeholder as labelValue for now
+          labelValue={input.name}
           id={input.id}
           type={input.type}
           name={input.name}

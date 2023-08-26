@@ -3,14 +3,7 @@ const InputsTask = ({ value, onChange, labelValue, id, type, name, placeholder }
   return (
     <div>
       <label htmlFor={id}>{labelValue}</label>
-      <input
-        id={id}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
+      <input id={id} type={type} name={name} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
   );
 };
