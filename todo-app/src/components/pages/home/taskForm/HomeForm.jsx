@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {  EmptyTask, checkSelectedDate, newTaskToAdd } from "../../../../utils";
 import { getTasks } from "../../../../api/tasksAPI";
 import InputsTask from "./detail/InputsTask";
-import { getDateInputConfig, getTextInputConfig } from "./detail/inputsConfig";
+import { getTextInputConfig } from "./detail/inputsConfig";
 
 const HomeForm = ({ setTasks }) => {
   // STATE
@@ -49,17 +49,6 @@ const HomeForm = ({ setTasks }) => {
           id={input.id}
           type={input.type}
           name={input.name}
-          placeholder={input.placeholder}
-        />
-      ))}
-      {getDateInputConfig.map((input) => (
-        <InputsTask
-          key={input.id}
-          onChange={handleChange}
-          id={input.id}
-          type={input.type}
-          name={input.name}
-          value={input.value}
           placeholder={input.placeholder}
         />
       ))}

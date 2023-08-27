@@ -6,7 +6,7 @@ const Tasks = ({ tasks }) => {
   return (
     <>
     {tasks.map((task) => (
-      <div key={uuidv4()}>
+      <div key={uuidv4()} className="task-style">
         <p>{task.label}</p>
         <p>{task.description}</p>
       </div>

@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
 const InputsTask = ({ value, onChange, labelValue, id, type, name, placeholder }) => {
   return (
-    <div>
+    <div className="field">
       <label htmlFor={id}>{labelValue}</label>
       <input id={id} type={type} name={name} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
