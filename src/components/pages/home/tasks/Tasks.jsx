@@ -7,7 +7,7 @@ const Tasks = () => {
   return (
     <>
     {fakeTasks.SMALL.map((task) => (
-      <Task key={task.key} label={task.label} description={task.description} endDate={task.end_date} />
+      <Task key={task.id} label={task.label} description={task.description} endDate={task.end_date} />
     ))}
     </>
   )

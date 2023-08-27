@@ -1,33 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import {  EmptyTask, checkSelectedDate, newTaskToAdd } from "../../../../utils";
-import { getTasks } from "../../../../api/tasksAPI";
+import { useState } from "react";
 import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
+import { EMPTY_TASK } from "../../../../constants/constants";
 
-const Form = ({ setTasks }) => {
+const Form = () => {
   // STATE
-  const [newTask, setNewTask] = useState(EmptyTask);
-
-  // BEHAVIOR
-  // @TODO EXTRACT TO CUSTOM HOOK
-  const fetchTasks = async () => {
-    const data = await getTasks();
-    setTasks(data);
-  };
+  const [newTask, setNewTask] = useState(EMPTY_TASK);
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
-    checkSelectedDate(newTask, setNewTask);
-    await newTaskToAdd(newTask, setTasks, setNewTask);
-    await fetchTasks();
-    console.log("newTask", newTask);
-  };  
-
-  useEffect(() => {
-    fetchTasks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    console.log("NewTask " , newTask);
+  };
 
   function handleChange(e) {
     const { name, value } = e.target;
