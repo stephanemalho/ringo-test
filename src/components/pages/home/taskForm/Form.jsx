@@ -2,19 +2,19 @@
 import { useState } from "react";
 import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
-import { EMPTY_TASK } from "../../../../constants/constants";
 
 const Form = () => {
   // STATE
-  const [newTask, setNewTask] = useState(EMPTY_TASK);
+  const [newTask, setNewTask] = useState({});
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
-    console.log("NewTask " , newTask);
+    console.log(newTask);
   };
 
   function handleChange(e) {
     const { name, value } = e.target;
+    console.log(name, value);
     setNewTask((prevTask) => ({
       ...prevTask,
       [name]: value,
@@ -29,7 +29,7 @@ const Form = () => {
           key={input.id}
           value={newTask[input.name]}
           onChange={handleChange}
-          labelValue={input.name}
+          label={input.name}
           id={input.id}
           type={input.type}
           name={input.name}

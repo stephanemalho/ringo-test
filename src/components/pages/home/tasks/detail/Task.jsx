@@ -3,12 +3,18 @@ import { styled } from "styled-components"
 
 
 // eslint-disable-next-line react/prop-types
-const Task = ({label, description, endDate}) => {
+const Task = ({key, label, description, endDate}) => {
+
+  const handleDelete = () => {
+    console.log('delete')
+  }
+  
   return (
-    <TaskStyled className="task-style">
+    <TaskStyled key={key} className="task-style">
         <p>{label}</p>
         <p>{description}</p>
         <p>Date de fin: {endDate}</p>
+        <button onClick={handleDelete}>Delete</button>
     </TaskStyled>
   )
 }
