@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Tasks from "./tasks/Tasks";
-import HomeForm from "./taskForm/Form";
+import Form from "./taskForm/Form";
 import Title from "../../reusableUI/Title";
 import { title } from "../../../constants/constants";
 
@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="todo-container">
       <Title label={title} />
-      <HomeForm setTasks={setTasks} />
+      <Form setTasks={setTasks} />
       <Tasks tasks={tasks} />
     </div>
   );
