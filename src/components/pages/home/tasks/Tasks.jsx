@@ -1,13 +1,13 @@
-import { fakeTasks } from "../../../../fakeTasks";
+import { fakeTasks } from "../../../../Data/fakeTasks";
 import Task from "./detail/Task";
 
 /* eslint-disable react/prop-types */
-const Tasks = () => {
+const Tasks = ({setTasks}) => {
 
   return (
     <>
-    {fakeTasks.SMALL.map((task) => (
-      <Task key={task.id} label={task.label} description={task.description} endDate={task.end_date} />
+    {fakeTasks.LARGE.map((task) => (
+      <Task setTasks={setTasks} key={task.id} id={task.id} label={task.label} description={task.description} endDate={task.end_date} />
     ))}
     </>
   )

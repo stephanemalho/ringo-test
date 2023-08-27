@@ -1,20 +1,24 @@
 import { styled } from "styled-components"
+import { fakeTasks } from "../../../../../Data/fakeTasks"
 
 
 
 // eslint-disable-next-line react/prop-types
-const Task = ({key, label, description, endDate}) => {
+const Task = ({label, description, endDate, id, setTasks}) => {
 
   const handleDelete = () => {
-    console.log('delete')
+    console.log('delete' , id)
+    fakeTasks.LARGE = fakeTasks.LARGE.filter((task) => task.id !== id)
+    setTasks(fakeTasks.LARGE)
+
   }
   
   return (
-    <TaskStyled key={key} className="task-style">
+    <TaskStyled id={id} className="task-style">
         <p>{label}</p>
         <p>{description}</p>
         <p>Date de fin: {endDate}</p>
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={() => handleDelete(id)}>Delete</button>
     </TaskStyled>
   )
 }
