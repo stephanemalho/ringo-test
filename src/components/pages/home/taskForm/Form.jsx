@@ -28,8 +28,8 @@ const Form = () => {
         <InputsTask
           key={input.id}
           value={newTask[input.name]}
+          labelValue={input.labelValue}
           onChange={handleChange}
-          label={input.name}
           id={input.id}
           type={input.type}
           name={input.name}
