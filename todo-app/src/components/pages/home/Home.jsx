@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Tasks from "./tasks/Tasks";
-import HomeForm from "./taskForm/HomeForm";
+import HomeForm from "./taskForm/Form";
 import Title from "../../reusableUI/Title";
 import { title } from "../../../constants/constants";
 

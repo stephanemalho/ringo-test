@@ -5,7 +5,7 @@ import { getTasks } from "../../../../api/tasksAPI";
 import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
 
-const HomeForm = ({ setTasks }) => {
+const Form = ({ setTasks }) => {
   // STATE
   const [newTask, setNewTask] = useState(EmptyTask);
 
@@ -57,6 +57,6 @@ const HomeForm = ({ setTasks }) => {
   );
 };
 
-export default HomeForm;
+export default Form;
 
 
