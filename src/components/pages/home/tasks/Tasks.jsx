@@ -1,4 +1,4 @@
-import Task from "./detail/Task";
+import Task from "./task/Task";
 
 /* eslint-disable react/prop-types */
 const Tasks = ({tasks, setTasks}) => {
