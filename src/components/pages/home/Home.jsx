@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
 import Title from "../../reusableUI/Title";
 import { TASK_TITLE } from "../../../constants/constants";
-import { fakeTasks } from "../../../Data/fakeTasks";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
+import { getTasks } from "../../../api/tasksAPI";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState(fakeTasks.SMALL);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    getTasks().then((data) => {
+      setTasks(data);
+    });
+  }, []);
+    
   
   // JSX
   return (

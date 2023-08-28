@@ -3,6 +3,7 @@ import { useState } from "react";
 import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
 import { EMPTY_TASK } from "../../../../constants/constants";
+import { newTaskToAdd } from "../../../../utils";
 
 const Form = ({tasks, setTasks}) => {
   // STATE
@@ -10,7 +11,9 @@ const Form = ({tasks, setTasks}) => {
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
+    await newTaskToAdd(newTask, setNewTask, setTasks);
     updateTasks(setTasks, tasks, newTask, setNewTask);
+    console.log("new task ", newTask);
   };
 
   const handleChange = (e) => {
@@ -40,13 +43,14 @@ const Form = ({tasks, setTasks}) => {
 export default Form;
 
 
-function updateTasks(setTasks, tasks, newTask, setNewTask) {
+const updateTasks = (setTasks, tasks, newTask, setNewTask) => {
   if (!newTask.label || !newTask.description || !newTask.end_date) return;
   setTasks(tasks.concat({
     ...newTask,
     id: tasks.length + 1,
   }));
   setNewTask(EMPTY_TASK);
+  console.log("new task length", tasks.length);
 }
 
 function newTaskValue(e, setNewTask, newTask) {
@@ -57,6 +61,5 @@ function newTaskValue(e, setNewTask, newTask) {
   })
   );
   console.log("new task ", newTask);
-  console.log("id ", newTask.id);
 }
 
