@@ -6,7 +6,7 @@ const SMALL = [
     label: "Task 1",
     description: "Description 1",
     start_date: "2020-01-01",
-    end_date: "2020-01-01",
+    end_date: "2029-12-01",
   },
 ];
 
