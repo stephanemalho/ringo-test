@@ -10,22 +10,11 @@ const Form = ({tasks, setTasks}) => {
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
-    setTasks(tasks.concat({
-      ...newTask,
-      id: tasks.length + 1,
-    }));
-    setNewTask(EMPTY_TASK);
+    updateTasks(setTasks, tasks, newTask, setNewTask);
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewTask((prevTask) => ({
-      ...prevTask,
-      [name]: value,
-      })
-    );
-    console.log("new task ",newTask);
-    console.log("id ",newTask.id);
+    newTaskValue(e, setNewTask, newTask);
   };
 
   // JSX
@@ -50,4 +39,24 @@ const Form = ({tasks, setTasks}) => {
 
 export default Form;
 
+
+function updateTasks(setTasks, tasks, newTask, setNewTask) {
+  if (!newTask.label || !newTask.description || !newTask.end_date) return;
+  setTasks(tasks.concat({
+    ...newTask,
+    id: tasks.length + 1,
+  }));
+  setNewTask(EMPTY_TASK);
+}
+
+function newTaskValue(e, setNewTask, newTask) {
+  const { name, value } = e.target;
+  setNewTask((prevTask) => ({
+    ...prevTask,
+    [name]: value,
+  })
+  );
+  console.log("new task ", newTask);
+  console.log("id ", newTask.id);
+}
 
