@@ -19,3 +19,12 @@ export const createTask = async (newTaskData) => {
       throw error;
     });
 };
+
+export const deleteTaskInDB = async (label) => {
+  return axios
+    .delete(`${API_BASE_URL}/tasks/${label}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+}

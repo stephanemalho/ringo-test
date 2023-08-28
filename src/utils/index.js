@@ -7,6 +7,7 @@ export const taskData = (newTask) => {
     description: newTask.description,
     start_date: newTask.start_date,
     end_date: newTask.end_date,
+    id: crypto.randomUUID(),
   };
   return newTaskData;
 };
@@ -15,7 +16,7 @@ export async function newTaskToAdd(newTask, setNewTask, setTasks) {
   try {
     checkSelectedDate(newTask, setNewTask);
     newTask.start_date = new Date().toISOString();
-    newTask.end_date = new Date(newTask.end_date).toISOString();
+    newTask.end_date = new Date(newTask.end_date).toISOString().split("T")[0];
     const newTaskData = taskData(newTask);
     const createdTask = await createTask(newTaskData);
     setTasks((prevTasks) => [...prevTasks, createdTask]);
