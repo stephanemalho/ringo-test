@@ -5,6 +5,7 @@ import Title from "../../reusableUI/Title";
 import { TASK_TITLE } from "../../../constants/constants";
 import { fakeTasks } from "../../../Data/fakeTasks";
 import { styled } from "styled-components";
+import SearchBar from "./searchBar/SearchBar";
 
 const Home = () => {
   // STATE
@@ -15,6 +16,7 @@ const Home = () => {
     <TaskStyled className="todo-container">
       <Title label={TASK_TITLE} />
       <Form setTasks={setTasks} tasks={tasks} />
+      <SearchBar tasks={tasks} setTasks={setTasks} />
       <Tasks tasks={tasks} setTasks={setTasks} />
     </TaskStyled>
   );
