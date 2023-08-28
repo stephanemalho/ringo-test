@@ -2,24 +2,23 @@
 import { useState } from "react";
 import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
+import { EMPTY_TASK } from "../../../../constants/constants";
 
 const Form = () => {
   // STATE
-  const [newTask, setNewTask] = useState({});
+  const [newTask, setNewTask] = useState(EMPTY_TASK);
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
-    console.log(newTask);
   };
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setNewTask((prevTask) => ({
       ...prevTask,
       [name]: value,
     }));
-  }
+  };
 
   // JSX
   return (
