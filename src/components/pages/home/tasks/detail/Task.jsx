@@ -34,8 +34,8 @@ const Task = ({label, description, endDate , id, tasks, setTasks}) => {
         <p>{label}</p>
         <p>{description}</p>
           <div className="checkbox-container">
-            <input type="checkbox" htmlFor="toCheck" value={endDate} onChange={handleChange} />
-            <label className="checkbox-label" htmlFor="toCheck">{!isChecked ? "À terminer avant le "+ endDate : "Terminer le "+ endDate}</label>
+            <input type="checkbox" id={id}  value={endDate} onChange={handleChange} />
+            <label htmlFor={id}  className="checkbox-label">{!isChecked ? "À terminer avant le "+ endDate : "Terminer le "+ endDate}</label>
           </div>
             <button className="delete-task"  onClick={() => handleDelete(id)}>Delete</button>
     </TaskStyled>
