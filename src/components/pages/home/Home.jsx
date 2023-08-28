@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <TaskStyled className="todo-container">
       <Title label={TASK_TITLE} />
-      <Form setTasks={setTasks} />
+      <Form setTasks={setTasks} tasks={tasks} />
       <Tasks tasks={tasks} setTasks={setTasks} />
     </TaskStyled>
   );

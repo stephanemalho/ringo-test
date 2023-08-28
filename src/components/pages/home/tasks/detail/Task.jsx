@@ -48,12 +48,12 @@ const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
       <div className="checkbox-container">
         <input
           type="checkbox"
-          id={id}
+          id={`checkbox-${id}`}
           value={endDate}
           onChange={handleChange}
-
+          name={`checkbox-${id}`}
         />
-        <label htmlFor={id} className="checkbox-label">
+        <label htmlFor={`checkbox-${id}`} className="checkbox-label">
           {isTodo
             ? "Terminer le " + endDate
             : "À terminer avant le " + endDate }

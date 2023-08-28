@@ -4,13 +4,17 @@ import InputsTask from "./detail/InputsTask";
 import { getTextInputConfig } from "./detail/inputsConfig";
 import { EMPTY_TASK } from "../../../../constants/constants";
 
-const Form = () => {
+const Form = ({tasks, setTasks}) => {
   // STATE
   const [newTask, setNewTask] = useState(EMPTY_TASK);
 
   const handleTaskCreate = async (event) => {
     event.preventDefault();
-    
+    setTasks(tasks.concat({
+      ...newTask,
+      id: tasks.length + 1,
+    }));
+    setNewTask(EMPTY_TASK);
   };
 
   const handleChange = (e) => {
@@ -18,7 +22,10 @@ const Form = () => {
     setNewTask((prevTask) => ({
       ...prevTask,
       [name]: value,
-    }));
+      })
+    );
+    console.log("new task ",newTask);
+    console.log("id ",newTask.id);
   };
 
   // JSX
