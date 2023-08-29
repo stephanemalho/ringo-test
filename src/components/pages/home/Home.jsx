@@ -7,6 +7,7 @@ import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../context/TaskContext";
+import { fakeTasks } from "../../../data/fakeTasks";
 
 const Home = () => {
   // STATE
@@ -20,8 +21,7 @@ const Home = () => {
     fetchTasks();
   }, []);
 
-  
-  // CONTEXT 
+  // CONTEXT
   const taskContextValue = {
     tasks,
     setTasks,

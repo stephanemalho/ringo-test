@@ -4,6 +4,7 @@ import InputTask from "./detail/InputTask";
 // import { getTextInputConfig } from "./detail/inputsConfig";
 import TaskContext from "../../../context/TaskContext";
 import { EMPTY_TASK } from "../../../../constants/constants";
+import { formatDateToUTC } from "../../../../utils";
 
 const Form = () => {
   // STATE
@@ -19,16 +20,16 @@ const Form = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-    if (name === "end_date") {
-      const dateFormatted = formatDate(value);
-      console.log(name, dateFormatted);
-    }
+    // console.log(name, value);
+
+    const valueFinal = name === "end_date" ? formatDateToUTC(value) : value;
 
     setInputValue((prevInputValue) => ({
       ...prevInputValue,
-      [name]: value,
+      [name]: valueFinal,
+      start_date: formatDateToUTC(new Date()),
     }));
+    // console.log(inputValue);
   };
 
   // JSX

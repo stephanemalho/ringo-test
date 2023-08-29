@@ -22,6 +22,11 @@ export function valueToFilter(tasksToFilter, searchValue) {
   return filteredTasks;
 }
 
-export function formatDate(value) {
-  return moment(value).format("YYYY-MM-DDTHH:mm:ss[Z]");
-}
+export const formatDateToUTC = (dateToFormat) => {
+  return moment(dateToFormat).format("YYYY-MM-DDTHH:mm:ss[Z]");
+};
+
+export const formatDateToStandard = (dateToFormat) => {
+  if (dateToFormat === "") return "";
+  return moment(dateToFormat).format("YYYY-MM-DD");
+};
