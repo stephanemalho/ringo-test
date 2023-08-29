@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import TaskTodo from "./detail/TaskTodo";
+import TaskContent from "./detail/TaskContent";
 import DescriptionTodo from "./detail/DescriptionTodo";
 import CheckBoxTodo from "./detail/CheckBoxTodo";
 // eslint-disable-next-line react/prop-types
@@ -9,7 +9,7 @@ const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
 
   return (
     <TaskStyled id={id} className="task-style">
-      <TaskTodo
+      <TaskContent
         isTodo={isTodo}
         label={label}
         tasks={tasks}

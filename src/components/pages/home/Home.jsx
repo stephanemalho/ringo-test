@@ -1,24 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
 import Title from "../../reusableUI/Title";
 import { TASK_TITLE } from "../../../constants/constants";
-import { fakeTasks } from "../../../Data/fakeTasks";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
+import { getTasks } from "../../../api/tasksAPI";
+import TaskContext from "../../context/TaskContext";
+import { fakeTasks } from "../../../data/fakeTasks";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState(fakeTasks.SMALL);
-  
+  const [tasks, setTasks] = useState([]);
+  const fetchTasks = async () => {
+    const tasks = await getTasks();
+    setTasks(tasks);
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  // CONTEXT
+  const taskContextValue = {
+    tasks,
+    setTasks,
+  };
+
   // JSX
   return (
-    <TaskStyled className="todo-container">
-      <Title label={TASK_TITLE} />
-      <Form setTasks={setTasks} tasks={tasks} />
-      <SearchBar tasks={tasks} setTasks={setTasks} />
-      <Tasks tasks={tasks} setTasks={setTasks} />
-    </TaskStyled>
+    <TaskContext.Provider value={taskContextValue}>
+      <TaskStyled className="todo-container">
+        <Title label={TASK_TITLE} />
+        <Form />
+        <SearchBar />
+        <Tasks />
+      </TaskStyled>
+    </TaskContext.Provider>
   );
 };
 

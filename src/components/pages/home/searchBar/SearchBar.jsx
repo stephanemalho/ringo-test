@@ -1,29 +1,30 @@
 /* eslint-disable react/prop-types */
 import { styled } from "styled-components";
-import { useState } from "react";
+import { valueToFilter } from "../../../../utils";
+import { useContext } from "react";
+import TaskContext from "../../../context/TaskContext";
 // import { fakeTasks } from "../../../../Data/fakeTasks";
 
-const SearchBar = ({ tasks, setTasks }) => {
-  const [tasksToFilter, setTasksToFilter] = useState(tasks);
-
+const SearchBar = () => {
+  //STATE
+  const { tasks, setTasks } = useContext(TaskContext);
+  // BEHAVIOR
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
+    console.log("searchValue", searchValue);
+    console.log("filteredTasks", tasks);
+    const filtered = valueToFilter(tasks, searchValue);
+    setTasks(filtered);
+    console.log("filteredTasks", filtered);
     if (searchValue === "") {
       // Réinitialiser les tâches filtrées si le champ de recherche est vide
-      setTasksToFilter(tasks);
       setTasks(tasks);
+      console.log("tasks", tasks);
       return;
     }
-    const filteredTasks = tasksToFilter.filter((task) => {
-      return (
-        task.label.toLowerCase().includes(searchValue) ||
-        task.description.toLowerCase().includes(searchValue) ||
-        task.end_date.toLowerCase().includes(searchValue)
-      );
-    });
-    setTasks(filteredTasks);
   };
 
+  //JSX
   return (
     <SearchBarStyled className="search-container">
       <label htmlFor="search" className="search-label">

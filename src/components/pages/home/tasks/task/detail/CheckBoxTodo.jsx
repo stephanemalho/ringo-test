@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import TaskContext from "../../../../../context/TaskContext";
 
 // eslint-disable-next-line react/prop-types
-const CheckBoxTodo = ({endDate, id, isTodo, setIsTodo, tasks, setTasks}) => {
+const CheckBoxTodo = ({endDate, id, isTodo, setIsTodo,}) => {
   const [previousEndDate, setPreviousEndDate] = useState(endDate);
+  const {tasks, setTasks} =useContext(TaskContext);
 
   const handleChange = () => {
     newTaskValue(
