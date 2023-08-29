@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     getDataFromDB();
-  }, [tasks]);
+  }, []);
   
   // JSX
   return (
