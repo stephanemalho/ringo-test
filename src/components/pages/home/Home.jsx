@@ -11,12 +11,14 @@ const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
 
+  const getDataFromDB = async () => {
+    const data = await getTasks();
+    setTasks(data);
+  };
+
   useEffect(() => {
-    getTasks().then((data) => {
-      setTasks(data);
-    });
-  }, []);
-    
+    getDataFromDB();
+  }, [tasks]);
   
   // JSX
   return (
