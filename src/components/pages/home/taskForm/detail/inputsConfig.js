@@ -1,14 +1,13 @@
 export const getTextInputConfig = [
   {
-    key: "0",
     id: "0",
     name: "label",
     type: "text",
     placeholder: "À faire",
-    labelValue: "À faire",
+    labelValue: "À faire",//fieldValue change to..
+    value: 
   },
   {
-    key: "1",
     id: "1",
     name: "description",
     type: "text",
@@ -16,7 +15,6 @@ export const getTextInputConfig = [
     labelValue: "Description",
   },
   {
-    key: "2",
     id: "2",
     name: "end_date",
     type: "date",

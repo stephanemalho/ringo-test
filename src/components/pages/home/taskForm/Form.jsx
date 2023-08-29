@@ -1,40 +1,69 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import InputsTask from "./detail/InputsTask";
-import { getTextInputConfig } from "./detail/inputsConfig";
+import { useContext, useState } from "react";
+import InputTask from "./detail/InputTask";
+// import { getTextInputConfig } from "./detail/inputsConfig";
+import TaskContext from "../../../context/TaskContext";
 import { EMPTY_TASK } from "../../../../constants/constants";
-import { newTaskToAdd } from "../../../../utils";
 
-const Form = ({tasks, setTasks}) => {
+const Form = () => {
   // STATE
-  const [newTask, setNewTask] = useState(EMPTY_TASK);
+  const [inputValue, setInputValue] = useState(EMPTY_TASK);
+  const { setTasks } = useContext(TaskContext);
 
-  const handleTaskCreate = async (event) => {
+  // COMPORTEMENTS
+  const handleCreateTask = async (event) => {
     event.preventDefault();
-    await newTaskToAdd(newTask, setNewTask, setTasks);
-    updateTasks(setTasks, tasks, newTask, setNewTask);
-    console.log("new task ", newTask);
+    setTasks((tasks) => [...tasks, inputValue]);
+    setInputValue("");
   };
 
   const handleChange = (e) => {
-    newTaskValue(e, setNewTask, newTask);
+    const { name, value } = e.target;
+    console.log(name, value);
+    if (name === "end_date") {
+      const dateFormatted = formatDate(value);
+      console.log(name, dateFormatted);
+    }
+
+    setInputValue((prevInputValue) => ({
+      ...prevInputValue,
+      [name]: value,
+    }));
   };
 
   // JSX
   return (
-    <form onSubmit={handleTaskCreate}>
-      {getTextInputConfig.map((input) => (
+    <form onSubmit={handleCreateTask}>
+      {/* {getTextInputConfig.map((input) => (
         <InputsTask
-          key={input.id}
-          value={newTask[input.name]}
-          labelValue={input.labelValue}
+          {...input}
           onChange={handleChange}
-          id={input.id}
-          type={input.type}
-          name={input.name}
-          placeholder={input.placeholder}
+          value={inputValue[input.name]}
+          key={input.id}
         />
-      ))}
+      ))} */}
+      <InputTask
+        value={inputValue.label}
+        onChange={handleChange}
+        type="text"
+        placeholder="Tâche a faire ..."
+        name="label"
+      />
+      <InputTask
+        value={inputValue.description}
+        onChange={handleChange}
+        type="text"
+        placeholder="Ajouter une description ..."
+        name="description"
+      />
+      <InputTask
+        value={inputValue.end_date}
+        onChange={handleChange}
+        type="date"
+        placeholder="Ajouter une date de fin ..."
+        name="end_date"
+      />
+
       <button type="submit">Add task</button>
     </form>
   );
@@ -42,24 +71,18 @@ const Form = ({tasks, setTasks}) => {
 
 export default Form;
 
-
-const updateTasks = (setTasks, tasks, newTask, setNewTask) => {
-  if (!newTask.label || !newTask.description || !newTask.end_date) return;
-  setTasks(tasks.concat({
-    ...newTask,
-    id: tasks.length + 1,
-  }));
-  setNewTask(EMPTY_TASK);
-  console.log("new task length", tasks.length);
-}
-
-function newTaskValue(e, setNewTask, newTask) {
-  const { name, value } = e.target;
-  setNewTask((prevTask) => ({
-    ...prevTask,
-    [name]: value,
-  })
-  );
-  console.log("new task ", newTask);
-}
-
+// function checkSelectedDate(inputValue, setInputValue) {
+//   const today = new Date();
+//   const selectedDate = new Date(inputValue.end_Date);
+//   if (selectedDate < today) {
+//     setInputValue((prevTask) => ({
+//       ...prevTask,
+//       end_date: today,
+//     }));
+//   } else {
+//     setInputValue((prevTask) => ({
+//       ...prevTask,
+//       end_date: selectedDate,
+//     }));
+//   }
+// }

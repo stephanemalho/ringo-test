@@ -1,17 +1,21 @@
 import { TiDelete } from "react-icons/ti";
 import { deleteTaskInDB } from "../../../../../../api/tasksAPI";
+import { useContext } from "react";
+import TaskContext from "../../../../../context/TaskContext";
 
 // eslint-disable-next-line react/prop-types
-const TaskContent = ({ isTodo, label, tasks, id, setTasks }) => {
-  const handleDelete = () => {
+const TaskContent = ({ isTodo, label, id }) => {
+  const {tasks, setTasks} = useContext(TaskContext);
+
+  const handleDelete = async (id) => {
     deleteCardSelected(tasks, id, setTasks);
-    deleteTaskInDB(label);
+    await deleteTaskInDB(label);
   };
 
   return (
     <div className="tasktodo-container">
       <TiDelete className="delete-task" onClick={() => handleDelete(id)} />
-      <h3>Tache à faire:</h3>
+      <h3>Titre ....</h3>
       <p className={isTodo ? "task-p__checked" : ""}>{label}</p>
     </div>
   );

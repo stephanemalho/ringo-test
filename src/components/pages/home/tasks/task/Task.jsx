@@ -15,7 +15,6 @@ const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
         tasks={tasks}
         id={id}
         setTasks={setTasks}
-        //onDelete={handleDelete}
       />
       <DescriptionTodo isTodo={isTodo} description={description} />
       <CheckBoxTodo endDate={endDate} id={id} isTodo={isTodo} setIsTodo={setIsTodo} tasks={tasks} setTasks={setTasks} />
