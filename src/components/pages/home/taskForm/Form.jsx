@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
 import InputTask from "./detail/InputTask";
-// import { getTextInputConfig } from "./detail/inputsConfig";
+// import { getTextInputsConfig } from "./detail/inputsConfig";
 import TaskContext from "../../../context/TaskContext";
 import { EMPTY_TASK } from "../../../../constants/constants";
 import { formatDateToUTC } from "../../../../utils";
+import { getTextInputsConfig } from "./detail/inputsConfig";
 
 const Form = () => {
   // STATE
@@ -20,7 +21,7 @@ const Form = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
+    console.log(name, value);
 
     const valueFinal = name === "end_date" ? formatDateToUTC(value) : value;
 
@@ -29,42 +30,24 @@ const Form = () => {
       [name]: valueFinal,
       start_date: formatDateToUTC(new Date()),
     }));
-    // console.log(inputValue);
+    console.log(inputValue);
   };
+
+  const inputsConfig = getTextInputsConfig(inputValue);
 
   // JSX
   return (
     <form onSubmit={handleCreateTask}>
-      {/* {getTextInputConfig.map((input) => (
-        <InputsTask
-          {...input}
-          onChange={handleChange}
-          value={inputValue[input.name]}
-          key={input.id}
-        />
-      ))} */}
-      <InputTask
-        value={inputValue.label}
-        onChange={handleChange}
-        type="text"
-        placeholder="Tâche a faire ..."
-        name="label"
-      />
-      <InputTask
-        value={inputValue.description}
-        onChange={handleChange}
-        type="text"
-        placeholder="Ajouter une description ..."
-        name="description"
-      />
-      <InputTask
-        value={inputValue.end_date}
-        onChange={handleChange}
-        type="date"
-        placeholder="Ajouter une date de fin ..."
-        name="end_date"
-      />
-
+      {inputsConfig.map((input) => {
+        return (
+          <InputTask
+            {...input}
+            key={input.name}
+            value={input.value}
+            onChange={handleChange}
+          />
+        );
+      })}
       <button type="submit">Add task</button>
     </form>
   );

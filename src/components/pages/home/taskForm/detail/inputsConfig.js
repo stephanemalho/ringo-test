@@ -1,24 +1,20 @@
-export const getTextInputConfig = [
+export const getTextInputsConfig = ({ label, description, end_date }) => [
   {
-    id: "0",
     name: "label",
+    value: label,
     type: "text",
-    placeholder: "À faire",
-    labelValue: "À faire",//fieldValue change to..
-    value: 
+    placeholder: "Tâche a faire ...",
   },
   {
-    id: "1",
     name: "description",
+    value: description,
     type: "text",
-    placeholder: "Entrez une description de la tache",
-    labelValue: "Description",
+    placeholder: "Ajouter une description ...",
   },
   {
-    id: "2",
     name: "end_date",
+    value: end_date,
     type: "date",
-    placeholder: "Date de fin de tâche",
-    labelValue: "Date de fin de tâche",
+    placeholder: "Ajouter une date de fin ...",
   },
 ];
