@@ -7,6 +7,7 @@ import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
+import Logo from "../../reusableUI/Logo";
 
 const Home = () => {
   // STATE
@@ -31,6 +32,7 @@ const Home = () => {
   return (
     <TaskContext.Provider value={taskContextValue}>
       <TaskStyled className="todo-container">
+        <Logo />
         <Title label={TASK_TITLE} />
         <Form />
         <SearchBar />

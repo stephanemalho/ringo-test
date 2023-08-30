@@ -21,7 +21,7 @@ const Form = () => {
       { ...inputValue, end_date: formatDateToUTC(inputValue.end_date) },
     ]);
     console.log("handleCreateTask ", inputValue.end_date);
-    setInputValue("");
+    setInputValue(EMPTY_TASK);
   };
 
   const handleChange = (e) => {

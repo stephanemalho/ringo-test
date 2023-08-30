@@ -4,7 +4,7 @@ import DescriptionTodo from "./detail/DescriptionTodo";
 import CheckBoxTodo from "./detail/CheckBoxTodo";
 import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
-//import { updateTaskInDB } from "../../../../../api/tasksAPI";
+import { updateTaskInDB } from "../../../../../api/tasksAPI";
 import { formatDateToUTC } from "../../../../../utils";
 
 // eslint-disable-next-line react/prop-types
@@ -29,10 +29,7 @@ const Task = ({ label, description, endDate, id }) => {
     setTasks(updatedTasks);
     updatedTasks.forEach((task) => {
       if (task.label === taskId) {
-        console.log("task dans updatedTasks:", task);
-        console.log("task.end_date:", task.end_date);
-        console.log("task.label:", task.label);
-        //updateTaskInDB(task.label, task.end_date);
+        updateTaskInDB(task.label, task.end_date);
       }
     }
     );
