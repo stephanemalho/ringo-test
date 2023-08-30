@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL } from "./baseURL";
-import { options } from "./options";
+import { options, uptateOptions } from "./options";
 
 export const getTasks = async () => {
   return axios
@@ -23,6 +23,15 @@ export const createTask = async (newTaskData) => {
 export const deleteTaskInDB = async (label) => {
   return axios
     .delete(`${API_BASE_URL}/tasks/${label}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+export const updateTaskInDB = async (label, date ) => {
+  return axios
+    .put(`${API_BASE_URL}/tasks/${label}`, date, uptateOptions)
     .then((response) => response.data)
     .catch((error) => {
       throw error;

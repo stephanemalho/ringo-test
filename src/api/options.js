@@ -12,3 +12,11 @@ export const options = {
   
 }
 
+export const uptateOptions = {
+  method : "PUT",
+  headers: {
+    'accept': 'application/json, text/plain, */*',
+    'content-type': 'application/json'
+  },
+}
+

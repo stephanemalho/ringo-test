@@ -1,23 +1,55 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 import TaskContent from "./detail/TaskContent";
 import DescriptionTodo from "./detail/DescriptionTodo";
 import CheckBoxTodo from "./detail/CheckBoxTodo";
+import { useContext, useState } from "react";
+import TaskContext from "../../../../../context/TaskContext";
+import { updateTaskInDB } from "../../../../../api/tasksAPI";
+import { formatDateToUTC } from "../../../../../utils";
+
 // eslint-disable-next-line react/prop-types
-const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
-  const [isTodo, setIsTodo] = useState(false);
+const Task = ({ label, description, endDate, id }) => {
+  const { tasks, setTasks } = useContext(TaskContext);
+  const [isTodoDone, setIsTodoDone] = useState(false);
+
+  const onClickCheckbox = async (taskId) => {
+    // Mise à jour de l'état en fonction de la valeur précédente
+    setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
+
+    const updatedTasks = tasks.map((task) => {
+      if (task.label === taskId) {
+        return {
+          ...task,
+          end_date: formatDateToUTC(new Date()).toString(),
+        };
+      }
+      console.log("task dans newTaskValue:", task);
+      return task;
+    });
+    console.log("updatedTasks:", updatedTasks);
+    //await updateTaskInDB(label, updatedTasks);
+    setTasks(updatedTasks);
+    updatedTasks.forEach((task) => {
+      if (task.label === taskId) {
+        console.log("task dans updatedTasks:", task);
+        console.log("task.end_date:", task.end_date);
+        console.log("task.label:", task.label);
+        updateTaskInDB(task.label, task.end_date);
+      }
+    }
+    );
+  };
 
   return (
-    <TaskStyled id={id} className="task-style">
-      <TaskContent
-        isTodo={isTodo}
-        label={label}
-        tasks={tasks}
+    <TaskStyled id={id}>
+      <TaskContent label={label} id={id} />
+      <DescriptionTodo description={description} />
+      <CheckBoxTodo
+        endDate={endDate}
         id={id}
-        setTasks={setTasks}
+        isTodoDone={isTodoDone}
+        onClickCheckbox={() => onClickCheckbox(id)}
       />
-      <DescriptionTodo isTodo={isTodo} description={description} />
-      <CheckBoxTodo endDate={endDate} id={id} isTodo={isTodo} setIsTodo={setIsTodo} tasks={tasks} setTasks={setTasks} />
     </TaskStyled>
   );
 };
@@ -25,36 +57,20 @@ const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-  border: 1px solid brown;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px;
-  padding-left: 20px;
-  text-align: left;
+    border: 1px solid brown;
+    border-radius: 10px;
+    margin-top: 20px;
   .task-p:first-child {
     font-weight: bold;
   }
-  .desc-p__todo {
-    font-style: normal;
-    height: 30px;
-  }
-  .desc-p__done {
-    font-style: italic;
-    color: green;
-    height: 30px;
+  
+  .tasktodo-container {
+    padding-left: 20px;
   }
   .task-p__checked {
     text-decoration: line-through;
   }
-  .checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-  }
-  .checkbox-label {
-    margin-left: 10px;
-  }
+  
   .delete-task {
     display: block;
     margin-left: auto;

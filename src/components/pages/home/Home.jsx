@@ -6,12 +6,12 @@ import { TASK_TITLE } from "../../../constants/constants";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
-import TaskContext from "../../context/TaskContext";
-import { fakeTasks } from "../../../data/fakeTasks";
+import TaskContext from "../../../context/TaskContext";
 
 const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
+
   const fetchTasks = async () => {
     const tasks = await getTasks();
     setTasks(tasks);

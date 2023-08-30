@@ -1,15 +1,17 @@
+import { styled } from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-const DescriptionTodo = ({isTodo, description}) => {
-
+const DescriptionTodo = ({ description }) => {
   return (
-    <div>
-        <h3>Description de le tache:</h3>
-        <p className={isTodo ? "desc-p__done" : "desc-p__todo"}>
-          {isTodo ? "Bravo d'avoir accomplis votre devoir 🎉" : description}
-        </p>
-      </div>
-  )
-}
+    <DescriptionTodoStyled>
+      <h3>Description de le tache:</h3>
+      <p>{description}</p>
+    </DescriptionTodoStyled>
+  );
+};
 
-export default DescriptionTodo
+export default DescriptionTodo;
+
+const DescriptionTodoStyled = styled.div`
+  padding-left:20px;
+`

@@ -1,64 +1,63 @@
-import { useContext, useState } from "react";
-import TaskContext from "../../../../../context/TaskContext";
+import { styled } from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-const CheckBoxTodo = ({endDate, id, isTodo, setIsTodo,}) => {
-  const [previousEndDate, setPreviousEndDate] = useState(endDate);
-  const {tasks, setTasks} =useContext(TaskContext);
+const CheckBoxTodo = ({ id, onClickCheckbox }) => {
 
   const handleChange = () => {
-    newTaskValue(
-      setIsTodo,
-      isTodo,
-      tasks,
-      id,
-      previousEndDate,
-      setTasks,
-      setPreviousEndDate
-    );
+    onClickCheckbox(id);
   };
 
   return (
-    <div className="checkbox-container">
-        <input
-          type="checkbox"
-          id={`checkbox-${id}`}
-          value={endDate}
-          onChange={handleChange}
-          name={`checkbox-${id}`}
-        />
-        <label htmlFor={`checkbox-${id}`} className="checkbox-label">
-          {isTodo ? "Terminer le " + endDate : "À terminer avant le " + endDate}
-        </label>
-      </div>
-  )
-}
+    <CheckBoxTodoStyled>
+      <button id={id} onClick={handleChange} >
+        O
+      </button>
+    </CheckBoxTodoStyled>
+  );
+};
 
-export default CheckBoxTodo
+export default CheckBoxTodo;
 
-function newTaskValue(
-  setIsTodo,
-  isTodo,
-  tasks,
-  id,
-  previousEndDate,
-  setTasks,
-  setPreviousEndDate
-) {
-  setIsTodo(!isTodo);
-  const taskCopy = [...tasks];
-  const newTasks = taskCopy.map((task) => {
-    if (task.id === id) {
-      return {
-        ...task,
-        end_date: isTodo ? previousEndDate : new Date().toLocaleDateString(),
-      };
-    }
-    return task;
-  });
-
-  setTasks(newTasks);
-  if (isTodo) {
-    setPreviousEndDate(previousEndDate);
+const CheckBoxTodoStyled = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  .checkbox-label {
+    margin-left: 10px;
   }
-}
+  padding-left: 20px;
+  .desc-p__todo {
+    display: none;
+  }
+  .desc-p__done {
+    font-style: italic;
+    color: green;
+    height: 30px;
+    position: absolute;
+    top: -10px;
+    right: 55px;
+  }
+`;
+
+// function newTaskValue(
+//   tasks,
+//   label,
+//   setTasks,
+// ) {
+//   const taskCopy = [...tasks];
+//   const newTasks = taskCopy.map((task) => {
+//     if (task.label === label) {
+//       return {
+//         ...task,
+//         end_date: new Date().toLocaleDateString(),
+//       };
+//     }
+//     console.log("task dans newTaskValue:", task);
+//     return task;
+//   });
+
+//   setTasks(newTasks);
+// }
