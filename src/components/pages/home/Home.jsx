@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
-import Title from "../../reusableUI/Title";
-import { TASK_TITLE } from "../../../constants/constants";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
-import Logo from "../../reusableUI/Logo";
 import Header from "./Header/Header";
+import { theme } from "../../../theme";
 
 const Home = () => {
   // STATE
@@ -48,13 +46,15 @@ export default Home;
 
 const HomeStyled = styled.div`
   display: flex;
-  background-color: #969696;
+  border: 1px solid green;
+  background-color: ${theme.colors.background_dark};
+  color: ${theme.colors.white};
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px;
+  padding: 50px 20px;
   margin: 0 auto;
   width: 100%;
-  max-width: 600px;
+  max-width: 375px;
   border: 1px solid black;
 `;

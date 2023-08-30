@@ -6,6 +6,7 @@ import { EMPTY_TASK } from "../../../../constants/constants";
 import { formatDateToUTC } from "../../../../utils";
 import { getTextInputsConfig } from "./detail/inputsConfig";
 import { createTask } from "../../../../api/tasksAPI";
+import styled from "styled-components";
 
 const Form = () => {
   // STATE
@@ -48,7 +49,7 @@ const Form = () => {
 
   // JSX
   return (
-    <form onSubmit={handleCreateTask}>
+    <FormStyled onSubmit={handleCreateTask}>
       {inputsConfig.map((input) => {
         return (
           <InputTask
@@ -60,8 +61,18 @@ const Form = () => {
         );
       })}
       <button type="submit">Add task</button>
-    </form>
+    </FormStyled>
   );
 };
 
 export default Form;
+
+const FormStyled = styled.div`
+  background: yellow;
+  width: 100%;
+  margin-top: 30px;
+
+  input {
+    margin-bottom: 16px;
+  }
+`;
