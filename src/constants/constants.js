@@ -2,8 +2,8 @@ export const TASK_TITLE = "RingoList";
 
 export const EMPTY_TASK = {
   id: 0,
-  label: "todo1",
-  description: "va faire ton todo",
+  label: "",
+  description: "",
   start_date: "",
   end_date: "",
   fieldLabel: "",

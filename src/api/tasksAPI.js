@@ -27,4 +27,39 @@ export const deleteTaskInDB = async (label) => {
     .catch((error) => {
       throw error;
     });
-}
+};
+
+// export const updateTaskInDB = async (label, date) => {
+//   console.log("label: ", label);
+//   console.log("date: ", date);
+//   const body = {
+//     end_date: date,
+//   };
+//   return axios
+//     .put(`${API_BASE_URL}/tasks/${label}`, body, uptateOptions)
+//     .then((response) => response.data)
+//     .catch((error) => {
+//       throw error;
+//     });
+// };
+
+// export const updateTaskInDB = async (label, date) => {
+//   const options = {
+//     method: "PUT",
+//     url : `${API_BASE_URL}/tasks/${label}`,
+//     data:{end_data:date}
+//   }
+//   await axios(options)
+//     .then((response) => response.data)
+//     .catch((error) => {
+//       throw error;
+//     }
+//   );
+// }
+
+export const updateTaskInDB = async (label, date) => {
+  const res = await axios.put(`${API_BASE_URL}/tasks/${label}`, {
+    end_date: date,
+  });
+  console.log('res: ', res);
+};

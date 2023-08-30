@@ -1,30 +1,27 @@
-/* eslint-disable react/prop-types */
+import { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { valueToFilter } from "../../../../utils";
-import { useContext } from "react";
-import TaskContext from "../../../context/TaskContext";
-// import { fakeTasks } from "../../../../Data/fakeTasks";
+import TaskContext from "../../../../context/TaskContext";
+import { getTasks } from "../../../../api/tasksAPI";
 
 const SearchBar = () => {
-  //STATE
   const { tasks, setTasks } = useContext(TaskContext);
-  // BEHAVIOR
-  const handleSearch = (e) => {
-    const searchValue = e.target.value.toLowerCase();
-    console.log("searchValue", searchValue);
-    console.log("filteredTasks", tasks);
-    const filtered = valueToFilter(tasks, searchValue);
-    setTasks(filtered);
-    console.log("filteredTasks", filtered);
-    if (searchValue === "") {
-      // Réinitialiser les tâches filtrées si le champ de recherche est vide
-      setTasks(tasks);
-      console.log("tasks", tasks);
-      return;
+  const [searchValue, setSearchValue] = useState(""); // État pour stocker la valeur de recherche
+
+  const handleSearch = async (e) => {
+    const newSearchValue = e.target.value.toLowerCase();
+    setSearchValue(newSearchValue);
+
+    if (newSearchValue === "") {
+      // Réinitialisation des tâches depuis la base de données
+      const allTasksFromDB = await getTasks(); // Utilisation de getTasks pour récupérer les tâches
+      setTasks(allTasksFromDB);
+    } else {
+      const filtered = valueToFilter(tasks, newSearchValue);
+      setTasks(filtered);
     }
   };
 
-  //JSX
   return (
     <SearchBarStyled className="search-container">
       <label htmlFor="search" className="search-label">
@@ -35,6 +32,7 @@ const SearchBar = () => {
           id="search"
           className="search-input"
           placeholder="Search..."
+          value={searchValue}
           onChange={handleSearch}
         />
       </label>

@@ -1,23 +1,65 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { styled } from "styled-components";
-import TaskContent from "./detail/TaskContent";
-import DescriptionTodo from "./detail/DescriptionTodo";
-import CheckBoxTodo from "./detail/CheckBoxTodo";
+import TodoContent from "./detail/TodoContent";
+import { useContext, useState, useEffect } from "react";
+import TaskContext from "../../../../../context/TaskContext";
+import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
+import { filterTasks } from "../../../../../utils";
+import Button from "../../../../reusableUI/Button";
+import { TiDelete } from "react-icons/ti";
+import { CgRadioChecked } from "react-icons/cg";
+import Checkbox from "../../../../reusableUI/Checkbox";
+
 // eslint-disable-next-line react/prop-types
-const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
-  const [isTodo, setIsTodo] = useState(false);
+const Task = ({ label, description }) => {
+  const { tasks, setTasks } = useContext(TaskContext);
+  const [isTodoDone, setIsTodoDone] = useState(false);
+  const [isDeleted, setisDeleted] = useState(false);
+
+  const handleDelete = async (label) => {
+    await deleteTaskInDB(label);
+    deleteCardSelected(tasks, label, setTasks);
+    setisDeleted(true);
+  };
+
+  function deleteCardSelected(tasks, id, setTasks) {
+    const taskCopy = [...tasks];
+    const newTasksFiltered = taskCopy.filter((task) => task.id !== id);
+    setTasks(newTasksFiltered);
+  }
+
+  const fetchTasks = async () => {
+    const tasks = await getTasks();
+    setTasks(tasks);
+    setisDeleted(false);
+  };
+
+  useEffect(() => {
+    if (isDeleted) {
+      fetchTasks();
+    }
+  }, [isDeleted]);
+
+  const onClickCheckbox = async (taskLabel) => {
+    setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
+
+    filterTasks(tasks, taskLabel, setTasks);
+  };
 
   return (
-    <TaskStyled id={id} className="task-style">
-      <TaskContent
-        isTodo={isTodo}
-        label={label}
-        tasks={tasks}
-        id={id}
-        setTasks={setTasks}
+    <TaskStyled>
+      <Checkbox
+        id={label}
+        type="checkbox"
+        onChange={() => onClickCheckbox(label)}
+        icon={isTodoDone && <CgRadioChecked className="check-icon" />}
       />
-      <DescriptionTodo isTodo={isTodo} description={description} />
-      <CheckBoxTodo endDate={endDate} id={id} isTodo={isTodo} setIsTodo={setIsTodo} tasks={tasks} setTasks={setTasks} />
+      <TodoContent description={description} label={label} />
+      <Button
+        logo={<TiDelete className={"delete-task"} />}
+        label={label}
+        onClick={() => handleDelete(label)}
+      />
     </TaskStyled>
   );
 };
@@ -25,42 +67,9 @@ const Task = ({ label, description, endDate, id, tasks, setTasks }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-  border: 1px solid brown;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
   border-radius: 10px;
-  margin: 10px;
-  padding-left: 20px;
-  text-align: left;
-  .task-p:first-child {
-    font-weight: bold;
-  }
-  .desc-p__todo {
-    font-style: normal;
-    height: 30px;
-  }
-  .desc-p__done {
-    font-style: italic;
-    color: green;
-    height: 30px;
-  }
-  .task-p__checked {
-    text-decoration: line-through;
-  }
-  .checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-  }
-  .checkbox-label {
-    margin-left: 10px;
-  }
-  .delete-task {
-    display: block;
-    margin-left: auto;
-    color: red;
-    cursor: pointer;
-    font-size: 2rem;
-    text-align: right;
-  }
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;

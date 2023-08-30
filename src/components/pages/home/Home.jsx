@@ -6,12 +6,14 @@ import { TASK_TITLE } from "../../../constants/constants";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
-import TaskContext from "../../context/TaskContext";
-import { fakeTasks } from "../../../data/fakeTasks";
+import TaskContext from "../../../context/TaskContext";
+import Logo from "../../reusableUI/Logo";
 
 const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
+
+  // BEHAVIOR
   const fetchTasks = async () => {
     const tasks = await getTasks();
     setTasks(tasks);
@@ -31,6 +33,7 @@ const Home = () => {
   return (
     <TaskContext.Provider value={taskContextValue}>
       <TaskStyled className="todo-container">
+        <Logo />
         <Title label={TASK_TITLE} />
         <Form />
         <SearchBar />

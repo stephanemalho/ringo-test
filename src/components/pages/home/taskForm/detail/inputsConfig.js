@@ -1,4 +1,4 @@
-export const getTextInputsConfig = ({ label, description, end_date }) => [
+export const getTextInputsConfig = ({ label, description }) => [
   {
     name: "label",
     value: label,
@@ -11,10 +11,10 @@ export const getTextInputsConfig = ({ label, description, end_date }) => [
     type: "text",
     placeholder: "Ajouter une description ...",
   },
-  {
-    name: "end_date",
-    value: end_date,
-    type: "date",
-    placeholder: "Ajouter une date de fin ...",
-  },
+  // {
+  //   name: "end_date",
+  //   value: end_date,
+  //   type: "date",
+  //   placeholder: "Ajouter une date de fin ...",
+  // },
 ];

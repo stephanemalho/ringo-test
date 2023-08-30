@@ -6,6 +6,7 @@ const InputTask = ({ value, onChange, type, placeholder, name }) => {
 
   if (name === "end_date" || name === "start_date") {
     formattedValue = formatDateToStandard(value);
+    console.log("InputTask",formattedValue);
   }
 
   return (
