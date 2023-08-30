@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import TaskDelete from "./detail/TaskDelete";
-import DescriptionTodo from "./detail/DescriptionTodo";
+import TodoContent from "./detail/TodoContent";
 import CheckBox from "./detail/CheckBox";
 import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
@@ -42,7 +42,7 @@ const Task = ({ label, description, endDate, id }) => {
         isTodoDone={isTodoDone}
         onClickCheckbox={() => onClickCheckbox(id)}
       />
-      <DescriptionTodo description={description} label={label}/>
+      <TodoContent description={description} label={label}/>
       <TaskDelete label={label} id={id} />
     </TaskStyled>
   );
