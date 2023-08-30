@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import TaskContent from "./detail/TaskContent";
+import TaskDelete from "./detail/TaskDelete";
 import DescriptionTodo from "./detail/DescriptionTodo";
 import CheckBoxTodo from "./detail/CheckBoxTodo";
 import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
-import { updateTaskInDB } from "../../../../../api/tasksAPI";
+//import { updateTaskInDB } from "../../../../../api/tasksAPI";
 import { formatDateToUTC } from "../../../../../utils";
 
 // eslint-disable-next-line react/prop-types
@@ -13,7 +13,6 @@ const Task = ({ label, description, endDate, id }) => {
   const [isTodoDone, setIsTodoDone] = useState(false);
 
   const onClickCheckbox = async (taskId) => {
-    // Mise à jour de l'état en fonction de la valeur précédente
     setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
 
     const updatedTasks = tasks.map((task) => {
@@ -27,14 +26,13 @@ const Task = ({ label, description, endDate, id }) => {
       return task;
     });
     console.log("updatedTasks:", updatedTasks);
-    //await updateTaskInDB(label, updatedTasks);
     setTasks(updatedTasks);
     updatedTasks.forEach((task) => {
       if (task.label === taskId) {
         console.log("task dans updatedTasks:", task);
         console.log("task.end_date:", task.end_date);
         console.log("task.label:", task.label);
-        updateTaskInDB(task.label, task.end_date);
+        //updateTaskInDB(task.label, task.end_date);
       }
     }
     );
@@ -42,14 +40,14 @@ const Task = ({ label, description, endDate, id }) => {
 
   return (
     <TaskStyled id={id}>
-      <TaskContent label={label} id={id} />
-      <DescriptionTodo description={description} />
       <CheckBoxTodo
         endDate={endDate}
         id={id}
         isTodoDone={isTodoDone}
         onClickCheckbox={() => onClickCheckbox(id)}
       />
+      <DescriptionTodo description={description} label={label}/>
+      <TaskDelete label={label} id={id} />
     </TaskStyled>
   );
 };
@@ -57,9 +55,11 @@ const Task = ({ label, description, endDate, id }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-    border: 1px solid brown;
+    display: flex;
+    flex-direction: row;
     border-radius: 10px;
     margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   .task-p:first-child {
     font-weight: bold;
   }
