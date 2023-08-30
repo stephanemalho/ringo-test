@@ -1,22 +1,15 @@
-import { styled } from "styled-components";
-import { CgRadioChecked } from "react-icons/cg";
+import { styled } from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
-const CheckBox = ({ id, onClickCheckbox, isTodoDone }) => {
-  const handleChange = () => {
-    onClickCheckbox(id);
-  };
-
+const Checkbox = ({type, onChange, icon, id}) => {
   return (
     <CheckBoxStyled>
-      <button className="check-button" id={id} onClick={handleChange}>
-        {isTodoDone && <CgRadioChecked className="check-icon" />}
-      </button>
+      <input type={type} onChange={onChange} icon={icon ? icon : undefined} id={id} />
     </CheckBoxStyled>
-  );
-};
+  )
+}
 
-export default CheckBox;
+export default Checkbox
 
 const CheckBoxStyled = styled.div`
   display: flex;
