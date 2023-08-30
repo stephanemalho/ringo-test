@@ -1,17 +1,17 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-const Checkbox = ({type, onChange, icon, id}) => {
+const Checkbox = ({ type, onChange, icon, id }) => {
   return (
-    <CheckBoxStyled>
-      <input type={type} onChange={onChange} icon={icon ? icon : undefined} id={id} />
-    </CheckBoxStyled>
-  )
-}
+    <CheckboxStyled>
+      <input type={type} onChange={onChange} icon={icon} id={id} />
+    </CheckboxStyled>
+  );
+};
 
-export default Checkbox
+export default Checkbox;
 
-const CheckBoxStyled = styled.div`
+const CheckboxStyled = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;

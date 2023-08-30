@@ -13,6 +13,7 @@ const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
 
+  // BEHAVIOR
   const fetchTasks = async () => {
     const tasks = await getTasks();
     setTasks(tasks);

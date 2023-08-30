@@ -18,13 +18,12 @@ const Tasks = () => {
           {tasks.map((task) => (
             <Task
               key={task.label}
-              id={task.label}
               label={task.label}
               description={task.description}
               endDate={task.end_date}
               startDate={task.start_date}
             />
-          ))}
+          )).reverse()}
         </TasksStyled>
       )}
     </>

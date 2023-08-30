@@ -1,4 +1,5 @@
 import moment from "moment";
+import { updateTaskInDB } from "../api/tasksAPI";
 
 export const taskData = (newTask) => {
   const newTaskData = {
@@ -22,6 +23,26 @@ export function valueToFilter(tasksToFilter, searchValue) {
     );
   });
   return filteredTasks;
+}
+
+
+export function filterTasks(tasks, taskLabel, setTasks) {
+  const updatedTasks = tasks.map((task) => {
+    if (task.label === taskLabel) {
+      return {
+        ...task,
+        end_date: formatDateToUTC(new Date()).toString(),
+      };
+    }
+    console.log("task dans newTaskValue:", task);
+    return task;
+  });
+  setTasks(updatedTasks);
+  updatedTasks.forEach((task) => {
+    if (task.label === taskLabel) {
+      updateTaskInDB(task.label, task.end_date);
+    }
+  });
 }
 
 export const formatDateToUTC = (dateToFormat) => {
