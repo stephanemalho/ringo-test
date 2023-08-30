@@ -13,10 +13,12 @@ export const taskData = (newTask) => {
 
 export function valueToFilter(tasksToFilter, searchValue) {
   const filteredTasks = tasksToFilter.filter((task) => {
+    const lowerCaseSearchValue = searchValue.toLowerCase();
     return (
-      task.label.toLowerCase().includes(searchValue) ||
-      task.description.toLowerCase().includes(searchValue) ||
-      task.end_date.toLowerCase().includes(searchValue)
+      task.label.toLowerCase().includes(lowerCaseSearchValue) ||
+      task.description.toLowerCase().includes(lowerCaseSearchValue) ||
+      task.end_date.includes(lowerCaseSearchValue) ||
+      task.start_date.includes(lowerCaseSearchValue)
     );
   });
   return filteredTasks;
