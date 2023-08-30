@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import TaskDelete from "./detail/TaskDelete";
 import DescriptionTodo from "./detail/DescriptionTodo";
-import CheckBoxTodo from "./detail/CheckBoxTodo";
+import CheckBox from "./detail/CheckBox";
 import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
 import { updateTaskInDB } from "../../../../../api/tasksAPI";
@@ -25,7 +25,6 @@ const Task = ({ label, description, endDate, id }) => {
       console.log("task dans newTaskValue:", task);
       return task;
     });
-    console.log("updatedTasks:", updatedTasks);
     setTasks(updatedTasks);
     updatedTasks.forEach((task) => {
       if (task.label === taskId) {
@@ -37,7 +36,7 @@ const Task = ({ label, description, endDate, id }) => {
 
   return (
     <TaskStyled id={id}>
-      <CheckBoxTodo
+      <CheckBox
         endDate={endDate}
         id={id}
         isTodoDone={isTodoDone}
