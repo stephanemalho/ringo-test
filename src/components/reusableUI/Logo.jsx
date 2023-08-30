@@ -1,10 +1,21 @@
+import { styled } from "styled-components";
 
 const Logo = () => {
   return (
-    <div>
-      <img src="https://webcdn.ringover.com/app/img/misc/logo_app_redoc.png" alt="logo" />
-    </div>
-  )
-}
+    <LogoStyled>
+      <img src="images/ringover-logo.png" />
+    </LogoStyled>
+  );
+};
 
-export default Logo
+export default Logo;
+
+const LogoStyled = styled.div`
+  border: 1px solid blue;
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100px;
+    height: 100px;
+  }
+`;

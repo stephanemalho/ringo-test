@@ -8,6 +8,7 @@ import SearchBar from "./searchBar/SearchBar";
 import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
 import Logo from "../../reusableUI/Logo";
+import Header from "./Header/Header";
 
 const Home = () => {
   // STATE
@@ -32,22 +33,22 @@ const Home = () => {
   // JSX
   return (
     <TaskContext.Provider value={taskContextValue}>
-      <TaskStyled className="todo-container">
-        <Logo />
-        <Title label={TASK_TITLE} />
+      <HomeStyled className="todo-container">
+        <Header />
+
         <Form />
         <SearchBar />
         <Tasks />
-      </TaskStyled>
+      </HomeStyled>
     </TaskContext.Provider>
   );
 };
 
 export default Home;
 
-const TaskStyled = styled.div`
+const HomeStyled = styled.div`
   display: flex;
-  background-color: white;
+  background-color: #969696;
   flex-direction: column;
   align-items: center;
   justify-content: center;
