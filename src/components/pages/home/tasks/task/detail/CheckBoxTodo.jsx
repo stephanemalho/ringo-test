@@ -1,7 +1,10 @@
 import { styled } from "styled-components";
+import { CgRadioChecked } from "react-icons/cg";
 
 // eslint-disable-next-line react/prop-types
-const CheckBoxTodo = ({ id, onClickCheckbox }) => {
+const CheckBoxTodo = ({ id, onClickCheckbox, isTodoDone }) => {
+
+  console.log("isTodoDone:", isTodoDone);
 
   const handleChange = () => {
     onClickCheckbox(id);
@@ -9,8 +12,8 @@ const CheckBoxTodo = ({ id, onClickCheckbox }) => {
 
   return (
     <CheckBoxTodoStyled>
-      <button id={id} onClick={handleChange} >
-        O
+      <button className="check-button" id={id} onClick={handleChange} >
+        {isTodoDone && <CgRadioChecked className="check-icon" />}
       </button>
     </CheckBoxTodoStyled>
   );
@@ -24,40 +27,31 @@ const CheckBoxTodoStyled = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 10px 20px;
-  width: 100%;
-  .checkbox-label {
-    margin-left: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px 0 0 10px;
+  .check-button {
+    position: relative;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: #f5f5f5;
+      border-bottom: 1px solid green;
+    }
   }
-  padding-left: 20px;
-  .desc-p__todo {
-    display: none;
-  }
-  .desc-p__done {
-    font-style: italic;
+  .check-icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
     color: green;
-    height: 30px;
-    position: absolute;
-    top: -10px;
-    right: 55px;
   }
+  
 `;
 
-// function newTaskValue(
-//   tasks,
-//   label,
-//   setTasks,
-// ) {
-//   const taskCopy = [...tasks];
-//   const newTasks = taskCopy.map((task) => {
-//     if (task.label === label) {
-//       return {
-//         ...task,
-//         end_date: new Date().toLocaleDateString(),
-//       };
-//     }
-//     console.log("task dans newTaskValue:", task);
-//     return task;
-//   });
-
-//   setTasks(newTasks);
-// }

@@ -2,10 +2,10 @@ import { TiDelete } from "react-icons/ti";
 import { deleteTaskInDB } from "../../../../../../api/tasksAPI";
 import { useContext } from "react";
 import TaskContext from "../../../../../../context/TaskContext";
-import { TASK_CONTENT } from "../../../../../../constants/constants";
+import { styled } from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-const TaskContent = ({ label }) => {
+const TaskDelete = ({ label }) => {
   const { tasks, setTasks } = useContext(TaskContext);
 
   const handleDelete = async (label) => {
@@ -14,14 +14,37 @@ const TaskContent = ({ label }) => {
   };
 
   return (
-    <div className="tasktodo-container">
+    <TaskDeleteStyled>
       <TiDelete className="delete-task" onClick={() => handleDelete(label)} />
-      <h3>{TASK_CONTENT.title}</h3>
-    </div>
+    </TaskDeleteStyled>
   );
 };
 
-export default TaskContent;
+export default TaskDelete;
+
+const TaskDeleteStyled = styled.div`
+  display: flex;
+  margin-left: auto;
+  width: 60px;
+  background-color: white;
+  position: relative;
+  border-radius: 0 10px 10px 0;
+  z-index: 1;
+  &:hover {
+    background-color: red;
+    transition: 0.5s;
+  }
+  .delete-task {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: transparent;
+  }
+`;
 
 function deleteCardSelected(tasks, id, setTasks) {
   const taskCopy = [...tasks];
