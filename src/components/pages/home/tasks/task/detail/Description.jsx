@@ -1,5 +1,4 @@
 import { Tooltip } from "@mui/material";
-import React from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Description = ({ label, description, className }) => {

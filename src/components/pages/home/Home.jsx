@@ -8,12 +8,19 @@ import Header from "./Header/Header";
 import { theme } from "../../../theme";
 import { fakeTasks } from "../../../data/fakeTasks";
 import { getTasks } from "../../../api/tasksAPI";
+import { deepClone } from "../../../utils";
 
 const Home = () => {
   // STATE
   const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
 
   // BEHAVIOR
+  const handleAdd = (newTaskToAdd) => {
+    const tasksCopy = deepClone(tasks);
+
+    setTasks([...tasksCopy, newTaskToAdd]);
+  };
+
   const fetchTasks = async () => {
     // const tasks = await getTasks();
     setTasks(tasks);
@@ -27,6 +34,7 @@ const Home = () => {
   const taskContextValue = {
     tasks,
     setTasks,
+    handleAdd,
   };
 
   // JSX

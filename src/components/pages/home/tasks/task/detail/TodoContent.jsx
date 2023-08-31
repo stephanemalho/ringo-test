@@ -4,7 +4,7 @@ import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
 import { formatDateToCalendar, hasEndDate } from "../../../../../../utils";
-import { Description } from "./Description";
+import Description from "./Description";
 
 // eslint-disable-next-line react/prop-types
 const TodoContent = ({ description, label, startDate, endDate }) => {
