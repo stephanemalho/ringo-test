@@ -1,6 +1,10 @@
 import moment from "moment";
 import { updateTaskInDB } from "../api/tasksAPI";
 
+export const hasEndDate = (value) => {
+  return value === "" ? false : true;
+};
+
 export const taskData = (newTask) => {
   const newTaskData = {
     label: newTask.label,
@@ -24,7 +28,6 @@ export function valueToFilter(tasksToFilter, searchValue) {
   });
   return filteredTasks;
 }
-
 
 export function filterTasks(tasks, taskLabel, setTasks) {
   const updatedTasks = tasks.map((task) => {

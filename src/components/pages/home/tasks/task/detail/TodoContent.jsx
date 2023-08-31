@@ -4,11 +4,13 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
-import { formatDateToStandard } from "../../../../../../utils";
+import { formatDateToStandard, hasEndDate } from "../../../../../../utils";
 import { Tooltip } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const TodoContent = ({ description, label, date, isTodoDone }) => {
+const TodoContent = ({ description, label, startDate, endDate }) => {
+  const isTodoDone = hasEndDate(endDate);
+
   return (
     <TodoContentStyled isTodoDone={isTodoDone}>
       <span className="label">{label}</span>
@@ -25,7 +27,7 @@ const TodoContent = ({ description, label, date, isTodoDone }) => {
           </Tooltip>
         </div>
         <Badge
-          message={formatDateToStandard(date)}
+          message={formatDateToStandard(endDate ? endDate : startDate)}
           className="badge"
           Icon={
             isTodoDone ? (

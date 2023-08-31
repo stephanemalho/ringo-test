@@ -11,6 +11,7 @@ const RadioButton = ({
   inputRadioStyle,
   labelRadioStyle,
   indicatorChecked,
+  checked,
 }) => {
   return (
     <RadioButtonStyled>
@@ -21,6 +22,7 @@ const RadioButton = ({
           icon={icon}
           id={id}
           className={inputRadioStyle}
+          checked={checked}
         />
         <label htmlFor={id} className={labelRadioStyle}>
           <div className={indicatorChecked}>{icon}</div>
