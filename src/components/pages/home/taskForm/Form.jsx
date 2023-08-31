@@ -19,11 +19,15 @@ const Form = () => {
   const handleCreateTask = async (event) => {
     event.preventDefault();
     await createTask(inputValue);
-    setTasks((tasks) => [
-      ...tasks,
-      { ...inputValue, end_date: formatDateToUTC(inputValue.end_date) },
-    ]);
-    console.log("handleCreateTask ", inputValue.end_date);
+
+    const newStartDate = new Date().toString();
+    const newTask = {
+      ...inputValue,
+      start_date: formatDateToUTC(newStartDate),
+      end_date: "",
+    };
+
+    setTasks((tasks) => [...tasks, newTask]);
     setInputValue(EMPTY_TASK);
   };
 

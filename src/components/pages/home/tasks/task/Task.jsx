@@ -4,7 +4,7 @@ import TodoContent from "./detail/TodoContent";
 import { useContext, useState, useEffect } from "react";
 import TaskContext from "../../../../../context/TaskContext";
 import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
-import { filterTasks } from "../../../../../utils";
+import { filterTasks, hasEndDate } from "../../../../../utils";
 import { FiTrash2 } from "react-icons/fi";
 import RadioButton from "../../../../reusableUI/RadioButton";
 import { theme } from "../../../../../theme";
@@ -12,7 +12,7 @@ import { theme } from "../../../../../theme";
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description, startDate, endDate }) => {
   const { tasks, setTasks } = useContext(TaskContext);
-  const [isTodoDone, setIsTodoDone] = useState(false);
+  const [isTodoDone, setIsTodoDone] = useState(hasEndDate(endDate));
   const [isDeleted, setisDeleted] = useState(false);
 
   const handleDelete = async (label) => {
@@ -55,11 +55,13 @@ const Task = ({ label, description, startDate, endDate }) => {
         inputRadioStyle="radio-btn-hide"
         labelRadioStyle="label-btn"
         indicatorChecked="indicator"
+        checked={hasEndDate(endDate) ? true : false}
       />
       <TodoContent
         label={label}
         description={description}
-        date={isTodoDone ? endDate : startDate}
+        startDate={startDate}
+        endDate={endDate}
         isTodoDone={isTodoDone}
         setIsTodoDone={setIsTodoDone}
       />
@@ -78,7 +80,6 @@ const TaskStyled = styled.div`
   grid-template-columns: 52px 200px 1fr;
   margin-bottom: 20px;
   padding: 12px 16px;
-  user-select: none;
 
   .icon-container {
     /* border: 1px solid blue; */
