@@ -1,8 +1,8 @@
 import { theme } from "../../theme";
 import styled from "styled-components";
 /* eslint-disable react/prop-types */
-const Title = ({ label }) => {
-  return <TitleStyled>{label}</TitleStyled>;
+const Title = ({ label, className }) => {
+  return <TitleStyled className={className}>{label}</TitleStyled>;
 };
 
 export default Title;

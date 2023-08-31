@@ -13,7 +13,7 @@ import { theme } from "../../../../theme";
 const Form = () => {
   // STATE
   const [inputValue, setInputValue] = useState(EMPTY_TASK);
-  const { setTasks } = useContext(TaskContext);
+  const { handleAdd } = useContext(TaskContext);
 
   //COMPORTEMENTS
   const handleCreateTask = async (event) => {
@@ -27,28 +27,18 @@ const Form = () => {
       end_date: "",
     };
 
-    setTasks((tasks) => [...tasks, newTask]);
+    handleAdd(newTask);
     setInputValue(EMPTY_TASK);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-
-    // changer name par value
-    const valueFinal = name === "end_date" ? formatDateToUTC(value) : value;
-    console.log("name dans handle Change ", valueFinal);
-
-    if (value === "end_date ") {
-      console.log("name end_date", name);
-    }
 
     setInputValue((prevInputValue) => ({
       ...prevInputValue,
       [name]: value,
       start_date: formatDateToUTC(new Date()),
     }));
-    console.log("valueFinal ", valueFinal);
   };
 
   const inputsConfig = getTextInputsConfig(inputValue);

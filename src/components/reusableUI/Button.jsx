@@ -20,4 +20,15 @@ const ButtonStyled = styled.button`
   color: ${theme.colors.white};
   font-size: ${theme.fonts.size.P0};
   line-height: 24px;
+  border: 1px solid ${(props) => (props.color ? props.color : "transparent")};
+  &:hover {
+    background: ${theme.colors.white};
+    color: ${(props) => (props.color ? props.color : "transparent")};
+    border: 1px solid ${(props) => (props.color ? props.color : "transparent")};
+  }
+  &:active {
+    color: ${theme.colors.white};
+    background: ${(props) => (props.color ? props.color : "transparent")};
+    border: 1px solid ${(props) => (props.color ? props.color : "transparent")};
+  }
 `;

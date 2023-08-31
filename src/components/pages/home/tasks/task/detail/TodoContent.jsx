@@ -1,41 +1,33 @@
 import { styled } from "styled-components";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BsCheckCircleFill } from "react-icons/bs";
 import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
-import { formatDateToStandard, hasEndDate } from "../../../../../../utils";
-import { Tooltip } from "@mui/material";
+import { formatDateToCalendar, hasEndDate } from "../../../../../../utils";
+import Description from "./Description";
 
 // eslint-disable-next-line react/prop-types
 const TodoContent = ({ description, label, startDate, endDate }) => {
   const isTodoDone = hasEndDate(endDate);
+  const BadgeIcon = isTodoDone ? (
+    <BsCheckCircleFill size={12} />
+  ) : (
+    <FaCalendarAlt size={12} />
+  );
 
   return (
     <TodoContentStyled isTodoDone={isTodoDone}>
       <span className="label">{label}</span>
       <div className="bottom-line">
-        <div className="description">
-          <Tooltip
-            arrow
-            title={`${label} : ${description}`}
-            className="tooltip"
-          >
-            <div className="icon-container">
-              <AiOutlineInfoCircle />
-            </div>
-          </Tooltip>
-        </div>
+        <Description
+          className="description"
+          label={label}
+          description={description}
+        />
         <Badge
-          message={formatDateToStandard(endDate ? endDate : startDate)}
+          message={formatDateToCalendar(endDate ? endDate : startDate)}
           className="badge"
-          Icon={
-            isTodoDone ? (
-              <BsCheckCircleFill size={12} />
-            ) : (
-              <FaCalendarAlt size={12} />
-            )
-          }
+          Icon={BadgeIcon}
           backgroundBadgeColor={
             theme.colors[isTodoDone ? "background_green" : "orange"]
           }

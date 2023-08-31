@@ -3,19 +3,26 @@ import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
-import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
 import { fakeTasks } from "../../../data/fakeTasks";
+import { getTasks } from "../../../api/tasksAPI";
+import { deepClone } from "../../../utils";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
 
   // BEHAVIOR
+  const handleAdd = (newTaskToAdd) => {
+    const tasksCopy = deepClone(tasks);
+
+    setTasks([...tasksCopy, newTaskToAdd]);
+  };
+
   const fetchTasks = async () => {
-    const tasks = await getTasks();
+    // const tasks = await getTasks();
     setTasks(tasks);
   };
 
@@ -27,6 +34,7 @@ const Home = () => {
   const taskContextValue = {
     tasks,
     setTasks,
+    handleAdd,
   };
 
   // JSX
@@ -34,7 +42,6 @@ const Home = () => {
     <TaskContext.Provider value={taskContextValue}>
       <HomeStyled className="todo-container">
         <Header />
-
         <Form />
         <hr />
         <SearchBar />
@@ -60,6 +67,10 @@ const HomeStyled = styled.div`
   border: 1px solid black;
   button {
     margin-top: 8px;
+  }
+
+  .search-container {
+    margin-bottom: 24px;
   }
 
   hr {
