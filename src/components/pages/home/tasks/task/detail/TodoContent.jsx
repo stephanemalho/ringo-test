@@ -4,39 +4,45 @@ import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
 import { formatDateToStandard } from "../../../../../../utils";
-import { useState } from "react";
 import { Tooltip } from "@mui/material";
-import { Button } from "@mui/base";
 
 // eslint-disable-next-line react/prop-types
-const TodoContent = ({ description, label, date }) => {
-  const [isInfoChecked, setisInfoChecked] = useState(false);
-
+const TodoContent = ({
+  description,
+  label,
+  date,
+  isTodoDone,
+  setIsTodoDone,
+}) => {
   // on click info, show description
   const handleClickInfo = () => {
-    setisInfoChecked((prevIsInfoChecked) => !prevIsInfoChecked);
+    setIsTodoDone((prevIsInfoChecked) => !prevIsInfoChecked);
   };
 
   return (
     <TodoContentStyled>
-      <p>{label}</p>
+      <span>{label}</span>
       <div className="bottom-line">
-        <div className="description" onClick={handleClickInfo}>
-          {isInfoChecked ? (
-            <Tooltip title={description} className="tooltip">
-              <Button>Arrow</Button>
-            </Tooltip>
-          ) : (
-            <AiOutlineInfoCircle />
-          )}
+        <div className="description">
+          <Tooltip arrow title={description} className="tooltip">
+            <div className="icon-container">
+              <AiOutlineInfoCircle />
+            </div>
+          </Tooltip>
         </div>
         <Badge
           message={formatDateToStandard(date)}
           className="badge"
           Icon={<FaCalendarAlt size={12} />}
-          backgroundBadgeColor={theme.colors.orange}
-          IconBadgeColor={theme.colors.brown}
-          messageBadgeColor={theme.colors.white}
+          backgroundBadgeColor={
+            isTodoDone ? theme.colors.background_green : theme.colors.orange
+          }
+          IconBadgeColor={
+            isTodoDone ? theme.colors.success : theme.colors.brown
+          }
+          messageBadgeColor={
+            isTodoDone ? theme.colors.success : theme.colors.brown
+          }
         />
       </div>
     </TodoContentStyled>
@@ -47,35 +53,24 @@ export default TodoContent;
 
 const TodoContentStyled = styled.div`
   padding-left: 20px;
-  border: 1px solid red;
-
+  span {
+    border: 1px solid yellow;
+    /* width: 100%; */
+    font-size: 16px;
+    line-height: 21px;
+  }
   .bottom-line {
     border: 1px solid red;
+    margin-top: 7px;
     display: flex;
     align-items: center;
-
     .description {
-      position: relative;
       margin-right: 16px;
-      display: flex;
-      color: ${theme.colors.greyLight};
-      width: 20px;
-      height: 20px;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-      .tooltip {
-        padding: 10px;
-        position: absolute;
-        width: 200px;
-        height: auto;
-        top: 20px;
-        left: 0;
-        background: ${theme.colors.greyLight};
-        color: ${theme.colors.white};
-        border-radius: 4px;
-        z-index: 1;
+      /* border: 3px solid purple; */
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

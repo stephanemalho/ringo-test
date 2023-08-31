@@ -10,9 +10,9 @@ import RadioButton from "../../../../reusableUI/RadioButton";
 import { theme } from "../../../../../theme";
 
 // eslint-disable-next-line react/prop-types
-const Task = ({ label, description, startDate }) => {
+const Task = ({ label, description, startDate, endDate }) => {
   const { tasks, setTasks } = useContext(TaskContext);
-  const [setIsTodoDone] = useState(false);
+  const [isTodoDone, setIsTodoDone] = useState(false);
   const [isDeleted, setisDeleted] = useState(false);
 
   const handleDelete = async (label) => {
@@ -39,7 +39,7 @@ const Task = ({ label, description, startDate }) => {
     }
   }, [isDeleted]);
 
-  const onClickCheckbox = async (taskLabel) => {
+  const onClickCheckbox = (taskLabel) => {
     setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
 
     filterTasks(tasks, taskLabel, setTasks);
@@ -57,10 +57,11 @@ const Task = ({ label, description, startDate }) => {
         indicatorChecked="indicator"
       />
       <TodoContent
-        setIsTodoDone={setIsTodoDone}
-        description={description}
         label={label}
-        date={startDate}
+        description={description}
+        date={isTodoDone ? endDate : startDate}
+        isTodoDone={isTodoDone}
+        setIsTodoDone={setIsTodoDone}
       />
       <div className="icon-container">
         <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
@@ -76,10 +77,10 @@ const TaskStyled = styled.div`
   display: grid;
   grid-template-columns: 52px 270px 1fr;
   margin-bottom: 20px;
-  padding: 5px 0;
+  padding: 12px 16px;
 
   .icon-container {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     height: 100%;
     width: 100%;
     display: flex;
