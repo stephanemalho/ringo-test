@@ -75,7 +75,7 @@ export default Task;
 const TaskStyled = styled.div`
   background: ${theme.colors.greyDark};
   display: grid;
-  grid-template-columns: 52px 270px 1fr;
+  grid-template-columns: 52px 200px 1fr;
   margin-bottom: 20px;
   padding: 12px 16px;
 

@@ -14,17 +14,16 @@ const TodoContent = ({
   isTodoDone,
   setIsTodoDone,
 }) => {
-  // on click info, show description
-  const handleClickInfo = () => {
-    setIsTodoDone((prevIsInfoChecked) => !prevIsInfoChecked);
-  };
-
   return (
     <TodoContentStyled>
       <span>{label}</span>
       <div className="bottom-line">
         <div className="description">
-          <Tooltip arrow title={description} className="tooltip">
+          <Tooltip
+            arrow
+            title={`${label} : ${description}`}
+            className="tooltip"
+          >
             <div className="icon-container">
               <AiOutlineInfoCircle />
             </div>
@@ -35,14 +34,10 @@ const TodoContent = ({
           className="badge"
           Icon={<FaCalendarAlt size={12} />}
           backgroundBadgeColor={
-            isTodoDone ? theme.colors.background_green : theme.colors.orange
+            theme.colors[isTodoDone ? "background_green" : "orange"]
           }
-          IconBadgeColor={
-            isTodoDone ? theme.colors.success : theme.colors.brown
-          }
-          messageBadgeColor={
-            isTodoDone ? theme.colors.success : theme.colors.brown
-          }
+          IconBadgeColor={theme.colors[isTodoDone ? "success" : "brown"]}
+          messageBadgeColor={theme.colors[isTodoDone ? "success" : "brown"]}
         />
       </div>
     </TodoContentStyled>
@@ -55,9 +50,12 @@ const TodoContentStyled = styled.div`
   padding-left: 20px;
   span {
     border: 1px solid yellow;
-    /* width: 100%; */
+    display: block;
     font-size: 16px;
     line-height: 21px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .bottom-line {
     border: 1px solid red;

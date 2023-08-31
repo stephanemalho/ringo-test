@@ -3,18 +3,19 @@ import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
-import { getTasks } from "../../../api/tasksAPI";
+// import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
+import { fakeTasks } from "../../../data/fakeTasks";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
 
   // BEHAVIOR
   const fetchTasks = async () => {
-    const tasks = await getTasks();
+    // const tasks = await getTasks();
     setTasks(tasks);
   };
 
