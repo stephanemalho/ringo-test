@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import { TASK_CONTENT } from "../../../../../../constants/constants";
 import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
@@ -16,9 +15,9 @@ const TodoContent = ({ description, label, date }) => {
           message={formatDateToStandard(date)}
           className="badge"
           Icon={<FaCalendarAlt size={12} />}
-          backgroundColor={theme.colors.orange}
-          IconColor={theme.colors.brown}
-          messageColor={theme.colors.white}
+          backgroundBadgeColor={theme.colors.orange}
+          IconBadgeColor={theme.colors.brown}
+          messageBadgeColor={theme.colors.white}
         />
       </div>
     </TodoContentStyled>

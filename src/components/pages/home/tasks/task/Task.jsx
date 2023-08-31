@@ -5,17 +5,13 @@ import { useContext, useState, useEffect } from "react";
 import TaskContext from "../../../../../context/TaskContext";
 import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
 import { filterTasks } from "../../../../../utils";
-import Button from "../../../../reusableUI/Button";
 import { FiTrash2 } from "react-icons/fi";
-import { CgRadioChecked } from "react-icons/cg";
-import Checkbox from "../../../../reusableUI/Checkbox";
-import { theme } from "../../../../../theme";
-import Icon from "../../../../reusableUI/Icon";
+import RadioButton from "../../../../reusableUI/RadioButton";
 
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description, startDate }) => {
   const { tasks, setTasks } = useContext(TaskContext);
-  const [isTodoDone, setIsTodoDone] = useState(false);
+  const [setIsTodoDone] = useState(false);
   const [isDeleted, setisDeleted] = useState(false);
 
   const handleDelete = async (label) => {
@@ -50,11 +46,14 @@ const Task = ({ label, description, startDate }) => {
 
   return (
     <TaskStyled>
-      <Checkbox
+      <RadioButton
         id={label}
-        type="checkbox"
+        type="radio"
         onChange={() => onClickCheckbox(label)}
-        icon={isTodoDone && <CgRadioChecked className="check-icon" />}
+        container="btn-groupe"
+        inputRadioStyle="radio-btn-hide"
+        labelRadioStyle="label-btn"
+        indicatorChecked="indicator"
       />
       <TodoContent description={description} label={label} date={startDate} />
       <div className="icon-container">

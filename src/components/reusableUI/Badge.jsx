@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
@@ -5,16 +6,16 @@ const Badge = ({
   message,
   className,
   Icon,
-  backgroundColor,
-  IconColor,
-  messageColor,
+  backgroundBadgeColor,
+  IconBadgeColor,
+  messageBadgeColor,
 }) => {
   return (
     <BadgeStyled
       className={className}
-      IconColor={IconColor}
-      messageColor={messageColor}
-      backgroundColor={backgroundColor}
+      IconBadgeColor={IconBadgeColor}
+      messageBadgeColor={messageBadgeColor}
+      backgroundBadgeColor={backgroundBadgeColor}
     >
       <span className="icon">{Icon}</span>
       <p>{message}</p>
@@ -28,7 +29,7 @@ const BadgeStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.backgroundColor};
+  background: ${(props) => props.backgroundBadgeColor};
 
   font-size: ${theme.fonts.size.XS};
   line-height: 21px;
@@ -39,10 +40,10 @@ const BadgeStyled = styled.div`
   .icon {
     margin-right: 6px;
     display: flex;
-    color: ${(props) => props.IconColor};
+    color: ${(props) => props.IconBadgeColor};
   }
 
   p {
-    color: ${(props) => props.messageColor};
+    color: ${(props) => props.messageBadgeColor};
   }
 `;
