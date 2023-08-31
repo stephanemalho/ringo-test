@@ -5,6 +5,8 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
 import { formatDateToStandard } from "../../../../../../utils";
 import { useState } from "react";
+import { Tooltip } from "@mui/material";
+import { Button } from "@mui/base";
 
 // eslint-disable-next-line react/prop-types
 const TodoContent = ({ description, label, date }) => {
@@ -21,10 +23,9 @@ const TodoContent = ({ description, label, date }) => {
       <div className="bottom-line">
         <div className="description" onClick={handleClickInfo}>
           {isInfoChecked ? (
-            <div className="tooltip">
-              <span className="arrow-tooltip"></span>
-              {description}
-            </div>
+            <Tooltip title={description} className="tooltip">
+              <Button>Arrow</Button>
+            </Tooltip>
           ) : (
             <AiOutlineInfoCircle />
           )}
@@ -75,16 +76,6 @@ const TodoContentStyled = styled.div`
         color: ${theme.colors.white};
         border-radius: 4px;
         z-index: 1;
-      }
-      .arrow-tooltip {
-        position: absolute;
-        top: -20px;
-        left: 6%;
-        margin-left: -10px;
-        border-width: 10px;
-        border-style: solid;
-        border-color: transparent transparent ${theme.colors.greyLight}
-          transparent;
       }
     }
   }
