@@ -6,13 +6,12 @@ import SearchBar from "./searchBar/SearchBar";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
-import { fakeTasks } from "../../../data/fakeTasks";
 import { getTasks } from "../../../api/tasksAPI";
 import { deepClone } from "../../../utils";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
+  const [tasks, setTasks] = useState([]);
 
   // BEHAVIOR
   const handleAdd = (newTaskToAdd) => {
@@ -22,7 +21,7 @@ const Home = () => {
   };
 
   const fetchTasks = async () => {
-    // const tasks = await getTasks();
+    const tasks = await getTasks();
     setTasks(tasks);
   };
 
