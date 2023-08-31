@@ -11,11 +11,10 @@ const Logo = () => {
 export default Logo;
 
 const LogoStyled = styled.div`
-  border: 1px solid blue;
   img {
     object-fit: cover;
     object-position: center;
-    width: 100px;
-    height: 100px;
+    width: 24px;
+    height: 24px;
   }
 `;
