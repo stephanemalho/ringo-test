@@ -37,7 +37,8 @@ const InputStyled = styled.div`
     font-size: ${theme.fonts.size.P0};
 
     &::placeholder {
-      color: ${theme.colors.grey};
+      color: ${theme.colors.greyLight};
+      font-weight: ${theme.fonts.weights.light};
     }
   }
 `;

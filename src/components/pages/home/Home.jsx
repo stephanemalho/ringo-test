@@ -35,6 +35,7 @@ const Home = () => {
         <Header />
 
         <Form />
+        <hr />
         <SearchBar />
         <Tasks />
       </HomeStyled>
@@ -56,4 +57,15 @@ const HomeStyled = styled.div`
   width: 100%;
   max-width: 375px;
   border: 1px solid black;
+
+  button {
+    margin-top: 8px;
+  }
+
+  hr {
+    border: 1px solid ${theme.colors.greyLight};
+    width: 100%;
+    margin-top: 31px;
+    margin-bottom: 31px;
+  }
 `;

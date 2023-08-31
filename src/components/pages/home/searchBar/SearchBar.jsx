@@ -25,7 +25,6 @@ const SearchBar = () => {
   return (
     <SearchBarStyled className="search-container">
       <label htmlFor="search" className="search-label">
-        <h2>Rechercher une tâche de la liste</h2>
         <input
           type="search"
           name="search"

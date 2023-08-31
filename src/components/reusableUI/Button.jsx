@@ -13,9 +13,11 @@ const Button = ({ label, onClick, ...restProps }) => {
 export default Button;
 
 const ButtonStyled = styled.button`
-  padding: 12px 24px;
+  padding: 6px 36px;
   border-radius: ${theme.borderRadius.round};
   background-color: ${theme.colors.purple};
   border: none;
   color: ${theme.colors.white};
+  font-size: ${theme.fonts.size.P0};
+  line-height: 24px;
 `;
