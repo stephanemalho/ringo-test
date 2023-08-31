@@ -16,21 +16,21 @@ const MEDIUM = [
     label: "Task 1",
     description: "Description 1",
     start_date: "2020-01-01",
-    end_date: "2020-01-01",
+    end_date: "2029-12-01",
   },
   {
     id: 2,
     label: "Task 2",
     description: "Description 3",
     start_date: "2020-01-01",
-    end_date: "2020-01-01",
+    end_date: "2025-06-04",
   },
   {
     id: 3,
     label: "Task 3",
     description: "Description 3",
     start_date: "2020-01-01",
-    end_date: "2020-01-01",
+    end_date: "2026-01-01",
   },
 ];
 
@@ -78,7 +78,7 @@ const WEIRD = [
     label: "",
     description: "Description 1",
     start_date: "2020-01-01",
-    end_date: "2020-01-01",
+    end_date: "2029-12-01",
   },
   {
     id: 2,

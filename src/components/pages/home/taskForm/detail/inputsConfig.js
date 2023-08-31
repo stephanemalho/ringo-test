@@ -3,18 +3,12 @@ export const getTextInputsConfig = ({ label, description }) => [
     name: "label",
     value: label,
     type: "text",
-    placeholder: "Tâche a faire ...",
+    placeholder: "Nom de la tâche ...",
   },
   {
     name: "description",
     value: description,
     type: "text",
-    placeholder: "Ajouter une description ...",
+    placeholder: "Description de la tâche ...",
   },
-  // {
-  //   name: "end_date",
-  //   value: end_date,
-  //   type: "date",
-  //   placeholder: "Ajouter une date de fin ...",
-  // },
 ];

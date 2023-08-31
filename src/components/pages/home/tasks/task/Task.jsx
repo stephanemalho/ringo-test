@@ -5,13 +5,12 @@ import { useContext, useState, useEffect } from "react";
 import TaskContext from "../../../../../context/TaskContext";
 import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
 import { filterTasks } from "../../../../../utils";
-import Button from "../../../../reusableUI/Button";
-import { TiDelete } from "react-icons/ti";
-import { CgRadioChecked } from "react-icons/cg";
-import Checkbox from "../../../../reusableUI/Checkbox";
+import { FiTrash2 } from "react-icons/fi";
+import RadioButton from "../../../../reusableUI/RadioButton";
+import { theme } from "../../../../../theme";
 
 // eslint-disable-next-line react/prop-types
-const Task = ({ label, description }) => {
+const Task = ({ label, description, startDate, endDate }) => {
   const { tasks, setTasks } = useContext(TaskContext);
   const [isTodoDone, setIsTodoDone] = useState(false);
   const [isDeleted, setisDeleted] = useState(false);
@@ -40,7 +39,7 @@ const Task = ({ label, description }) => {
     }
   }, [isDeleted]);
 
-  const onClickCheckbox = async (taskLabel) => {
+  const onClickCheckbox = (taskLabel) => {
     setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
 
     filterTasks(tasks, taskLabel, setTasks);
@@ -48,18 +47,25 @@ const Task = ({ label, description }) => {
 
   return (
     <TaskStyled>
-      <Checkbox
+      <RadioButton
         id={label}
-        type="checkbox"
+        type="radio"
         onChange={() => onClickCheckbox(label)}
-        icon={isTodoDone && <CgRadioChecked className="check-icon" />}
+        container="btn-groupe"
+        inputRadioStyle="radio-btn-hide"
+        labelRadioStyle="label-btn"
+        indicatorChecked="indicator"
       />
-      <TodoContent description={description} label={label} />
-      <Button
-        logo={<TiDelete className={"delete-task"} />}
+      <TodoContent
         label={label}
-        onClick={() => handleDelete(label)}
+        description={description}
+        date={isTodoDone ? endDate : startDate}
+        isTodoDone={isTodoDone}
+        setIsTodoDone={setIsTodoDone}
       />
+      <div className="icon-container">
+        <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
+      </div>
     </TaskStyled>
   );
 };
@@ -67,9 +73,26 @@ const Task = ({ label, description }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: ${theme.colors.greyDark};
+  display: grid;
+  grid-template-columns: 52px 200px 1fr;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  user-select: none;
+
+  .icon-container {
+    /* border: 1px solid blue; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      color: red;
+      &:hover {
+        color: white;
+      }
+    }
+  }
 `;

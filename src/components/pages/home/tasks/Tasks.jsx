@@ -2,31 +2,26 @@ import { useContext } from "react";
 import Task from "./task/Task";
 import TaskContext from "../../../../context/TaskContext";
 import { styled } from "styled-components";
+import { theme } from "../../../../theme";
 
 /* eslint-disable react/prop-types */
 const Tasks = () => {
   const { tasks } = useContext(TaskContext);
 
+  if (tasks.length === 0) return null;
+
   return (
-    <>
-      {tasks.length === 0 ? (
-        <TasksStyled>
-          <div className="tasks-empty">Ajouter une tâche...</div>
-        </TasksStyled>
-      ) : (
-        <TasksStyled>
-          {tasks.map((task) => (
-            <Task
-              key={task.label}
-              label={task.label}
-              description={task.description}
-              endDate={task.end_date}
-              startDate={task.start_date}
-            />
-          )).reverse()}
-        </TasksStyled>
-      )}
-    </>
+    <TasksStyled>
+      {tasks.map((task) => (
+        <Task
+          key={task.label}
+          label={task.label}
+          description={task.description}
+          endDate={task.end_date}
+          startDate={task.start_date}
+        />
+      ))}
+    </TasksStyled>
   );
 };
 
@@ -34,7 +29,10 @@ export default Tasks;
 
 const TasksStyled = styled.div`
   width: 100%;
-
+  height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-bottom: 3px solid ${theme.colors.greyLight};
   .tasks-empty {
     height: 500px;
     width: 400px;
