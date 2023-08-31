@@ -7,7 +7,7 @@ import Profile from "./Profile";
 const Header = () => {
   return (
     <HeaderStyled>
-      <Logo />
+      <Logo onClick={() => window.location.reload()} />
       <Title className="title" label={TASK_TITLE} />
       <Profile />
     </HeaderStyled>

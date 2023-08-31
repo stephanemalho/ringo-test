@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
-const Logo = () => {
+const Logo = ({ onClick }) => {
   return (
-    <LogoStyled>
+    <LogoStyled onClick={onClick}>
       <img src="images/ringover-logo.png" />
     </LogoStyled>
   );

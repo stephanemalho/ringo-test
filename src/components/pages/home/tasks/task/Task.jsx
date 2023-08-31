@@ -66,7 +66,11 @@ const Task = ({ label, description, startDate, endDate }) => {
         setIsTodoDone={setIsTodoDone}
       />
       <div className="icon-container">
-        <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
+        <FiTrash2
+          size={20}
+          className="icon"
+          onClick={() => handleDelete(label)}
+        />
       </div>
     </TaskStyled>
   );
@@ -93,6 +97,9 @@ const TaskStyled = styled.div`
       color: red;
       &:hover {
         color: white;
+      }
+      &:active {
+        color: red;
       }
     }
   }

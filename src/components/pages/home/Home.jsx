@@ -7,14 +7,15 @@ import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
 import { fakeTasks } from "../../../data/fakeTasks";
+import { getTasks } from "../../../api/tasksAPI";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
+  const [tasks, setTasks] = useState([]);
 
   // BEHAVIOR
   const fetchTasks = async () => {
-    // const tasks = await getTasks();
+    const tasks = await getTasks();
     setTasks(tasks);
   };
 
