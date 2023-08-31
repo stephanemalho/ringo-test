@@ -28,6 +28,7 @@ export default Tasks;
 
 const TasksStyled = styled.div`
   width: 100%;
+  border: 1px solid red;
 
   .tasks-empty {
     height: 500px;

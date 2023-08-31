@@ -6,9 +6,11 @@ import TaskContext from "../../../../../context/TaskContext";
 import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
 import { filterTasks } from "../../../../../utils";
 import Button from "../../../../reusableUI/Button";
-import { TiDelete } from "react-icons/ti";
+import { FiTrash2 } from "react-icons/fi";
 import { CgRadioChecked } from "react-icons/cg";
 import Checkbox from "../../../../reusableUI/Checkbox";
+import { theme } from "../../../../../theme";
+import Icon from "../../../../reusableUI/Icon";
 
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description }) => {
@@ -55,9 +57,9 @@ const Task = ({ label, description }) => {
         icon={isTodoDone && <CgRadioChecked className="check-icon" />}
       />
       <TodoContent description={description} label={label} />
-      <Button
-        logo={<TiDelete className={"delete-task"} />}
-        label={label}
+      <Icon
+        className="trash-icon-container"
+        Icon={<FiTrash2 className={"trash-icon"} />}
         onClick={() => handleDelete(label)}
       />
     </TaskStyled>
@@ -67,9 +69,27 @@ const Task = ({ label, description }) => {
 export default Task;
 
 const TaskStyled = styled.div`
+  border: 1px solid blue;
   display: flex;
   flex-direction: row;
   border-radius: 10px;
   margin-top: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  .trash-icon-container {
+    background: lightblue;
+    width: 100%;
+  }
+
+  .trash-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    color: ${theme.colors.red};
+    &:hover {
+      color: white;
+      transition: 0.5s;
+    }
+  }
 `;

@@ -8,6 +8,7 @@ import { getTextInputsConfig } from "./detail/inputsConfig";
 import { createTask } from "../../../../api/tasksAPI";
 import styled from "styled-components";
 import Button from "../../../reusableUI/Button";
+import { theme } from "../../../../theme";
 
 const Form = () => {
   // STATE
@@ -16,7 +17,6 @@ const Form = () => {
 
   //COMPORTEMENTS
   const handleCreateTask = async (event) => {
-    alert("handleCreateTask");
     event.preventDefault();
     await createTask(inputValue);
     setTasks((tasks) => [
@@ -63,7 +63,7 @@ const Form = () => {
         );
       })}
       <div className="button-container">
-        <Button label={"Ajouter"} />
+        <Button label={"Ajouter"} color={theme.colors.purple} />
       </div>
     </FormStyled>
   );
