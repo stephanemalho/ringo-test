@@ -57,11 +57,9 @@ const Task = ({ label, description }) => {
         icon={isTodoDone && <CgRadioChecked className="check-icon" />}
       />
       <TodoContent description={description} label={label} />
-      <Icon
-        className="trash-icon-container"
-        Icon={<FiTrash2 className={"trash-icon"} />}
-        onClick={() => handleDelete(label)}
-      />
+      <div className="icon-container">
+        <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
+      </div>
     </TaskStyled>
   );
 };
@@ -69,27 +67,23 @@ const Task = ({ label, description }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-  border: 1px solid blue;
-  display: flex;
-  flex-direction: row;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  position: relative;
+  background: pink;
+  display: grid;
+  grid-template-columns: 52px 270px 1fr;
 
-  .trash-icon-container {
-    background: lightblue;
+  .icon-container {
+    border: 1px solid blue;
+    height: 100%;
     width: 100%;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  .trash-icon {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    color: ${theme.colors.red};
-    &:hover {
-      color: white;
-      transition: 0.5s;
+    .icon {
+      color: red;
+      &:hover {
+        color: white;
+      }
     }
   }
 `;

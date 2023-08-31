@@ -9,6 +9,5 @@ export default Icon;
 
 const IconStyled = styled.div`
   border: 1px solid yellow;
-  height: 40px;
-  width: 40px;
+  display: inline;
 `;

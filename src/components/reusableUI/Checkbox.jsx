@@ -18,7 +18,6 @@ const CheckboxStyled = styled.div`
   align-items: center;
   padding: 10px 20px;
   background-color: #f5f5f5;
-  border-radius: 10px 0 0 10px;
   .check-button {
     position: relative;
     top: 10px;

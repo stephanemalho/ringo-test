@@ -15,4 +15,5 @@ export default TodoContent;
 
 const TodoContentStyled = styled.div`
   padding-left: 20px;
+  border: 1px solid red;
 `;
