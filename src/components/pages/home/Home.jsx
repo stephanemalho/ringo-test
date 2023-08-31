@@ -11,11 +11,11 @@ import { getTasks } from "../../../api/tasksAPI";
 
 const Home = () => {
   // STATE
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(fakeTasks.MEDIUM);
 
   // BEHAVIOR
   const fetchTasks = async () => {
-    const tasks = await getTasks();
+    // const tasks = await getTasks();
     setTasks(tasks);
   };
 
@@ -34,7 +34,6 @@ const Home = () => {
     <TaskContext.Provider value={taskContextValue}>
       <HomeStyled className="todo-container">
         <Header />
-
         <Form />
         <hr />
         <SearchBar />
