@@ -7,6 +7,7 @@ import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
 import { filterTasks } from "../../../../../utils";
 import { FiTrash2 } from "react-icons/fi";
 import RadioButton from "../../../../reusableUI/RadioButton";
+import { theme } from "../../../../../theme";
 
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description, startDate }) => {
@@ -55,7 +56,12 @@ const Task = ({ label, description, startDate }) => {
         labelRadioStyle="label-btn"
         indicatorChecked="indicator"
       />
-      <TodoContent description={description} label={label} date={startDate} />
+      <TodoContent
+        setIsTodoDone={setIsTodoDone}
+        description={description}
+        label={label}
+        date={startDate}
+      />
       <div className="icon-container">
         <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
       </div>
@@ -66,9 +72,11 @@ const Task = ({ label, description, startDate }) => {
 export default Task;
 
 const TaskStyled = styled.div`
-  background: pink;
+  background: ${theme.colors.greyDark};
   display: grid;
   grid-template-columns: 52px 270px 1fr;
+  margin-bottom: 20px;
+  padding: 5px 0;
 
   .icon-container {
     border: 1px solid blue;

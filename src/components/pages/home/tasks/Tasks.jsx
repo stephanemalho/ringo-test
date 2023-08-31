@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Task from "./task/Task";
 import TaskContext from "../../../../context/TaskContext";
 import { styled } from "styled-components";
+import { theme } from "../../../../theme";
 
 /* eslint-disable react/prop-types */
 const Tasks = () => {
@@ -28,8 +29,10 @@ export default Tasks;
 
 const TasksStyled = styled.div`
   width: 100%;
-  border: 1px solid red;
-
+  height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-bottom: 3px solid ${theme.colors.greyLight};
   .tasks-empty {
     height: 500px;
     width: 400px;

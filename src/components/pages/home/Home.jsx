@@ -46,7 +46,7 @@ const Home = () => {
 export default Home;
 
 const HomeStyled = styled.div`
-  height: 100vh;
+  height: 650px;
   display: flex;
   border: 1px solid green;
   background-color: ${theme.colors.background_dark};
@@ -57,7 +57,6 @@ const HomeStyled = styled.div`
   width: 100%;
   max-width: 375px;
   border: 1px solid black;
-
   button {
     margin-top: 8px;
   }
