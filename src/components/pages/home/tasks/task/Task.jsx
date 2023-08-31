@@ -78,6 +78,7 @@ const TaskStyled = styled.div`
   grid-template-columns: 52px 200px 1fr;
   margin-bottom: 20px;
   padding: 12px 16px;
+  user-select: none;
 
   .icon-container {
     /* border: 1px solid blue; */

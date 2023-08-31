@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { BsCheckCircleFill } from "react-icons/bs";
 import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
@@ -7,16 +8,10 @@ import { formatDateToStandard } from "../../../../../../utils";
 import { Tooltip } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const TodoContent = ({
-  description,
-  label,
-  date,
-  isTodoDone,
-  setIsTodoDone,
-}) => {
+const TodoContent = ({ description, label, date, isTodoDone }) => {
   return (
-    <TodoContentStyled>
-      <span>{label}</span>
+    <TodoContentStyled isTodoDone={isTodoDone}>
+      <span className="label">{label}</span>
       <div className="bottom-line">
         <div className="description">
           <Tooltip
@@ -32,7 +27,13 @@ const TodoContent = ({
         <Badge
           message={formatDateToStandard(date)}
           className="badge"
-          Icon={<FaCalendarAlt size={12} />}
+          Icon={
+            isTodoDone ? (
+              <BsCheckCircleFill size={12} />
+            ) : (
+              <FaCalendarAlt size={12} />
+            )
+          }
           backgroundBadgeColor={
             theme.colors[isTodoDone ? "background_green" : "orange"]
           }
@@ -48,23 +49,22 @@ export default TodoContent;
 
 const TodoContentStyled = styled.div`
   padding-left: 20px;
-  span {
-    border: 1px solid yellow;
+  .label {
     display: block;
     font-size: 16px;
     line-height: 21px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-decoration: ${(props) => (props.isTodoDone ? "line-through" : "none")};
+    color: ${(props) => (props.isTodoDone ? theme.colors.greyLight : "none")};
   }
   .bottom-line {
-    border: 1px solid red;
     margin-top: 7px;
     display: flex;
     align-items: center;
     .description {
       margin-right: 16px;
-      /* border: 3px solid purple; */
       .icon-container {
         display: flex;
         justify-content: center;
