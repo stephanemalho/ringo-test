@@ -2,13 +2,14 @@ import Title from "../../../reusableUI/Title";
 import { TASK_TITLE } from "../../../../constants/constants";
 import styled from "styled-components";
 import Logo from "../../../reusableUI/Logo";
+import Profile from "./Profile";
 
 const Header = () => {
   return (
     <HeaderStyled>
       <Logo />
-      <Title label={TASK_TITLE} />
-      <Logo />
+      <Title className="title" label={TASK_TITLE} />
+      <Profile />
     </HeaderStyled>
   );
 };
@@ -20,4 +21,12 @@ const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  .title {
+    position: absolute;
+    right: 50%;
+    bottom: 25%;
+    transform: translate(50%, 50%);
+  }
 `;

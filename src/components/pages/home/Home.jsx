@@ -3,7 +3,6 @@ import Tasks from "./tasks/Tasks";
 import Form from "./taskForm/Form";
 import { styled } from "styled-components";
 import SearchBar from "./searchBar/SearchBar";
-import { getTasks } from "../../../api/tasksAPI";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
