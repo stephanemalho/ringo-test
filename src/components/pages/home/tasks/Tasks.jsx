@@ -34,8 +34,10 @@ const TasksStyled = styled.div`
   height: 400px;
   overflow: hidden;
   overflow-y: scroll;
-  border-bottom: 3px solid ${theme.colors.greyLight};
+  border-bottom: 2px solid ${theme.colors.greyLight};
+
   .tasks-empty {
+    background: red;
     height: 500px;
     width: 400px;
     margin-top: 50px;

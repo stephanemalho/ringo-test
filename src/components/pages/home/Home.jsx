@@ -62,6 +62,10 @@ const HomeStyled = styled.div`
     margin-top: 8px;
   }
 
+  .search-container {
+    margin-bottom: 24px;
+  }
+
   hr {
     border: 1px solid ${theme.colors.greyLight};
     width: 100%;

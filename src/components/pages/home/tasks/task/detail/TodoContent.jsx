@@ -4,11 +4,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import Badge from "../../../../../reusableUI/Badge";
 import { FaCalendarAlt } from "react-icons/fa";
 import { theme } from "../../../../../../theme";
-import {
-  formatDateToCalendar,
-  formatDateToStandard,
-  hasEndDate,
-} from "../../../../../../utils";
+import { formatDateToCalendar, hasEndDate } from "../../../../../../utils";
 import { Tooltip } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
