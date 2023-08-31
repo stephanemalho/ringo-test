@@ -7,26 +7,20 @@ import { styled } from "styled-components";
 const Tasks = () => {
   const { tasks } = useContext(TaskContext);
 
+  if (tasks.length === 0) return null;
+
   return (
-    <>
-      {tasks.length === 0 ? (
-        <TasksStyled>
-          <div className="tasks-empty">Ajouter une tâche...</div>
-        </TasksStyled>
-      ) : (
-        <TasksStyled>
-          {tasks.map((task) => (
-            <Task
-              key={task.label}
-              label={task.label}
-              description={task.description}
-              endDate={task.end_date}
-              startDate={task.start_date}
-            />
-          )).reverse()}
-        </TasksStyled>
-      )}
-    </>
+    <TasksStyled>
+      {tasks.map((task) => (
+        <Task
+          key={task.label}
+          label={task.label}
+          description={task.description}
+          endDate={task.end_date}
+          startDate={task.start_date}
+        />
+      ))}
+    </TasksStyled>
   );
 };
 

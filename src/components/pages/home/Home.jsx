@@ -45,13 +45,12 @@ const Home = () => {
 export default Home;
 
 const HomeStyled = styled.div`
+  height: 100vh;
   display: flex;
   border: 1px solid green;
   background-color: ${theme.colors.background_dark};
   color: ${theme.colors.white};
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 50px 20px;
   margin: 0 auto;
   width: 100%;

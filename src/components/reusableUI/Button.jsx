@@ -2,8 +2,12 @@ import { styled } from "styled-components";
 import { theme } from "../../theme";
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ label, onClick }) => {
-  return <ButtonStyled onClick={onClick}>{label}</ButtonStyled>;
+const Button = ({ label, onClick, ...restProps }) => {
+  return (
+    <ButtonStyled onClick={onClick} {...restProps}>
+      {label}
+    </ButtonStyled>
+  );
 };
 
 export default Button;

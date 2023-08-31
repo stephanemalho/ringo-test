@@ -16,6 +16,7 @@ const Form = () => {
 
   //COMPORTEMENTS
   const handleCreateTask = async (event) => {
+    alert("handleCreateTask");
     event.preventDefault();
     await createTask(inputValue);
     setTasks((tasks) => [
@@ -50,7 +51,7 @@ const Form = () => {
 
   // JSX
   return (
-    <FormStyled onSubmit={handleCreateTask}>
+    <FormStyled action="submit" onSubmit={handleCreateTask}>
       {inputsConfig.map((input) => {
         return (
           <Input
@@ -70,7 +71,7 @@ const Form = () => {
 
 export default Form;
 
-const FormStyled = styled.div`
+const FormStyled = styled.form`
   /* background: yellow; */
   width: 100%;
   margin-top: 30px;
