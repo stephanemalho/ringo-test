@@ -56,3 +56,8 @@ export const formatDateToStandard = (dateToFormat) => {
   if (dateToFormat === "") return "";
   return moment(dateToFormat).format("YYYY-MM-DD");
 };
+
+export const formatDateToCalendar = (dateToFormat) => {
+  if (dateToFormat === "") return "";
+  return moment(dateToFormat).subtract(10, "days").calendar();
+};
