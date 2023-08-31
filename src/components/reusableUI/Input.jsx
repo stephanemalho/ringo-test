@@ -1,18 +1,12 @@
 import { styled } from "styled-components";
-import { formatDateToStandard } from "../../../../../utils";
-import { theme } from "../../../../../theme";
+import { theme } from "../../theme";
 
 // eslint-disable-next-line react/prop-types
-const InputTask = ({ value, onChange, type, placeholder, name }) => {
+const Input = ({ value, onChange, type, placeholder, name }) => {
   let formattedValue = value;
 
-  if (name === "end_date" || name === "start_date") {
-    formattedValue = formatDateToStandard(value);
-    console.log("InputTask", formattedValue);
-  }
-
   return (
-    <InputTaskStyled className="field">
+    <InputStyled className="field">
       <input
         required
         id={name}
@@ -22,13 +16,13 @@ const InputTask = ({ value, onChange, type, placeholder, name }) => {
         value={formattedValue}
         onChange={onChange}
       />
-    </InputTaskStyled>
+    </InputStyled>
   );
 };
 
-export default InputTask;
+export default Input;
 
-const InputTaskStyled = styled.div`
+const InputStyled = styled.div`
   /* border: 1px solid red; */
   width: 100%;
 
@@ -40,6 +34,7 @@ const InputTaskStyled = styled.div`
     border: 1px solid ${theme.colors.greyLight};
     border-radius: ${theme.borderRadius.round};
     color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P0};
 
     &::placeholder {
       color: ${theme.colors.grey};

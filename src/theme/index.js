@@ -11,6 +11,7 @@ const colors = {
   greySemiDark: "#93a2b1",
   greyDark: "#1D1D1D",
   background_dark: "#121212",
+  purple: "#8687E7",
 
   dark: "#121212",
   incognito: "#333",
@@ -51,6 +52,7 @@ const fonts = {
   },
   family: {
     stylish: '"Amatic SC", cursive',
+    lato: '"Lato", sans-serif',
   },
 };
 
