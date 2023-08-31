@@ -13,7 +13,7 @@ import { theme } from "../../../../../theme";
 import Icon from "../../../../reusableUI/Icon";
 
 // eslint-disable-next-line react/prop-types
-const Task = ({ label, description }) => {
+const Task = ({ label, description, startDate }) => {
   const { tasks, setTasks } = useContext(TaskContext);
   const [isTodoDone, setIsTodoDone] = useState(false);
   const [isDeleted, setisDeleted] = useState(false);
@@ -56,7 +56,7 @@ const Task = ({ label, description }) => {
         onChange={() => onClickCheckbox(label)}
         icon={isTodoDone && <CgRadioChecked className="check-icon" />}
       />
-      <TodoContent description={description} label={label} />
+      <TodoContent description={description} label={label} date={startDate} />
       <div className="icon-container">
         <FiTrash2 className="icon" onClick={() => handleDelete(label)} />
       </div>

@@ -12,6 +12,8 @@ const colors = {
   greyDark: "#1D1D1D",
   background_dark: "#121212",
   purple: "#8687E7",
+  orange: "#FFCC80",
+  brown: "#A36200",
 
   dark: "#121212",
   incognito: "#333",
