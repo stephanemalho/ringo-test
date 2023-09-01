@@ -1,10 +1,21 @@
-# React + Vite
+# RingoList avec ReactJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pour demarrer ce projet:
 
-Currently, two official plugins are available:
+<ul>
+<li>npm i</li>
+<li>npm run dev</li>
+</ul>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Comme demandé, l’interface de gestion de tâches intègre les fonctionnalités suivantes:
+<ul>
+<li>✅ La création de tâche </li>
+<li>✅ Une liste des tâches existantes</li>
+<li>✅ Un système de validation de tâche par date de fin </li>
+<li>✅ La possibilité de supprimer une tâche précise </li>
+<li>✅ Un champ de recherche par texte et par date </li>
+</ul>
 
-![image](https://github.com/stephanemalho/ringo-test/assets/78078427/48759ebb-8a5d-4d76-9b7c-852d06f2f9a5)
+<img width="517" alt="Screenshot 2023-09-01 at 11 42 55" src="https://github.com/stephanemalho/ringo-test/assets/78078427/05410d50-55a8-4708-80f5-bf741b148b3c">
+
+
