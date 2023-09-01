@@ -59,7 +59,7 @@ export const formatDateToStandard = (dateToFormat) => {
 
 export const formatDateToCalendar = (dateToFormat) => {
   if (dateToFormat === "") return "";
-  return moment(dateToFormat).subtract(10, "days").calendar();
+  return moment(dateToFormat).format("DD/MM/YYYY");
 };
 
 export const deepClone = (array) => {
