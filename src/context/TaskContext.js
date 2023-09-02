@@ -5,6 +5,7 @@ export default createContext({
   setTasks: () => {},
   handleAdd: () => {},
   handleDelete: () => {},
+  handleUpdateTasks: () => {},
   searchValue: [],
   setSearchValue: () => {},
 });

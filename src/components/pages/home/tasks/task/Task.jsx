@@ -3,19 +3,20 @@ import { styled } from "styled-components";
 import TodoContent from "./detail/TodoContent";
 import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
-import { filterTasks, hasEndDate } from "../../../../../utils";
+import { hasEndDate } from "../../../../../utils";
 import { FiTrash2 } from "react-icons/fi";
 import RadioButton from "../../../../reusableUI/RadioButton";
 import { theme } from "../../../../../theme";
 
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description, startDate, endDate }) => {
-  const { tasks, setTasks, handleDelete } = useContext(TaskContext);
+  const { tasks, setTasks, handleDelete, handleUpdateTasks } = useContext(TaskContext);
   const [isTodoDone, setIsTodoDone] = useState(hasEndDate(endDate));
 
-  const onClickCheckbox = (taskLabel) => {
+  const markAsComplete = (label) => {
     setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
-    filterTasks(tasks, taskLabel, setTasks);
+    handleUpdateTasks(label)
+    //  filterTasks(tasks, taskLabel, setTasks);
   };
 
   return (
@@ -23,7 +24,7 @@ const Task = ({ label, description, startDate, endDate }) => {
       <RadioButton
         id={label}
         type="radio"
-        onChange={() => onClickCheckbox(label)}
+        onChange={() => markAsComplete(label)}
         container="btn-groupe"
         inputRadioStyle="radio-btn-hide"
         labelRadioStyle="label-btn"

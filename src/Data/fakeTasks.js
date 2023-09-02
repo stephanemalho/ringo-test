@@ -83,15 +83,15 @@ const WEIRD = [
   {
     id: 2,
     label: "",
-    description: "",
-    start_date: "2020-01",
-    end_date: "202-01-01",
+    description: "aaa",
+    start_date: "2020-01-12",
+    end_date: "",
   },
   {
     id: 3,
-    label: "Task 3",
+    label: "Task 3 fghjkljhgfghjkljhgfghjk",
     description: "3456789",
-    start_date: "2020-01-01",
+    start_date: "2022-01-01",
     end_date: "2020-01-01",
   },
 ];
