@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { styled } from "styled-components";
 import TodoContent from "./detail/TodoContent";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import TaskContext from "../../../../../context/TaskContext";
-import { deleteTaskInDB, getTasks } from "../../../../../api/tasksAPI";
 import { filterTasks, hasEndDate } from "../../../../../utils";
 import { FiTrash2 } from "react-icons/fi";
 import RadioButton from "../../../../reusableUI/RadioButton";
@@ -11,37 +10,11 @@ import { theme } from "../../../../../theme";
 
 // eslint-disable-next-line react/prop-types
 const Task = ({ label, description, startDate, endDate }) => {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { tasks, setTasks, handleDelete } = useContext(TaskContext);
   const [isTodoDone, setIsTodoDone] = useState(hasEndDate(endDate));
-  const [isDeleted, setisDeleted] = useState(false);
-
-  const handleDelete = async (label) => {
-    await deleteTaskInDB(label);
-    deleteCardSelected(tasks, label, setTasks);
-    setisDeleted(true);
-  };
-
-  function deleteCardSelected(tasks, id, setTasks) {
-    const taskCopy = [...tasks];
-    const newTasksFiltered = taskCopy.filter((task) => task.id !== id);
-    setTasks(newTasksFiltered);
-  }
-
-  const fetchTasks = async () => {
-    const tasks = await getTasks();
-    setTasks(tasks);
-    setisDeleted(false);
-  };
-
-  useEffect(() => {
-    if (isDeleted) {
-      fetchTasks();
-    }
-  }, [isDeleted]);
 
   const onClickCheckbox = (taskLabel) => {
     setIsTodoDone((prevIsTodoDone) => !prevIsTodoDone);
-
     filterTasks(tasks, taskLabel, setTasks);
   };
 
