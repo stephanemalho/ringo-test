@@ -6,14 +6,17 @@ import SearchBar from "./searchBar/SearchBar";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
-import { deleteTaskInDB, getTasks } from "../../../api/tasksAPI";
-import { deepClone } from "../../../utils";
+import {
+  deleteTaskInDB,
+  getTasks,
+  updateTaskInDB,
+} from "../../../api/tasksAPI";
+import { deepClone, formatDateToUTC } from "../../../utils";
 
 const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
   const [searchValue, setSearchValue] = useState(""); // État pour stocker la valeur de recherche
-
 
   // BEHAVIOR
   const handleAdd = (newTaskToAdd) => {
@@ -26,6 +29,24 @@ const Home = () => {
     const tasksCopy = deepClone(tasks);
     const newTasksFiltered = tasksCopy.filter((task) => task.label !== label);
     setTasks(newTasksFiltered);
+  };
+
+  const handleUpdateTasks = (taskLabel) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.label === taskLabel) {
+        return {
+          ...task,
+          end_date: formatDateToUTC(new Date()).toString(),
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    updatedTasks.forEach((task) => {
+      if (task.label === taskLabel) {
+        updateTaskInDB(task.label, task.end_date);
+      }
+    });
   };
 
   const fetchTasks = async () => {
@@ -43,8 +64,9 @@ const Home = () => {
     setTasks,
     handleAdd,
     handleDelete,
-    searchValue, 
-    setSearchValue
+    searchValue,
+    setSearchValue,
+    handleUpdateTasks,
   };
 
   // JSX

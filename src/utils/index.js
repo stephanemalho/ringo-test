@@ -29,28 +29,14 @@ export function tasksToFilter(tasksToFilter, searchValue) {
   return filteredTasks;
 }
 
-export function filterTasks(tasks, taskLabel, setTasks) {
-  const updatedTasks = tasks.map((task) => {
-    if (task.label === taskLabel) {
-      return {
-        ...task,
-        end_date: formatDateToUTC(new Date()).toString(),
-      };
-    }
-    return task;
-  });
-  setTasks(updatedTasks);
-  updatedTasks.forEach((task) => {
-    if (task.label === taskLabel) {
-      updateTaskInDB(task.label, task.end_date);
-    }
-  });
-}
 
 export function filterSearchedTasks(tasks, searchValue) {
   return tasks.filter((task) => {
     const searchedValue = searchValue.toLowerCase();
-    const hasSearchedValue = task.label.toLowerCase().includes(searchedValue);
+    const hasSearchedValueInLabel = task.label.toLowerCase().includes(searchedValue);
+    const hasSearchedValueInEndDate = task.end_date.includes(searchedValue);
+    const hasSearchedValueInStartDate = task.start_date.includes(searchedValue);  
+    const hasSearchedValue = hasSearchedValueInLabel || hasSearchedValueInEndDate || hasSearchedValueInStartDate;
     return searchedValue === "" ? task : hasSearchedValue;
   });
 }
