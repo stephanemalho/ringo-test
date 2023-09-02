@@ -33,5 +33,5 @@ export const updateTaskInDB = async (label, date) => {
   const res = await axios.put(`${API_BASE_URL}/tasks/${label}`, {
     end_date: date,
   });
-  console.log("res: ", res);
+  console.info("res: ", res);
 };

@@ -6,23 +6,31 @@ import SearchBar from "./searchBar/SearchBar";
 import TaskContext from "../../../context/TaskContext";
 import Header from "./Header/Header";
 import { theme } from "../../../theme";
-import { getTasks } from "../../../api/tasksAPI";
+import { deleteTaskInDB, getTasks } from "../../../api/tasksAPI";
 import { deepClone } from "../../../utils";
 
 const Home = () => {
   // STATE
   const [tasks, setTasks] = useState([]);
+  const [searchValue, setSearchValue] = useState(""); // État pour stocker la valeur de recherche
+
 
   // BEHAVIOR
   const handleAdd = (newTaskToAdd) => {
     const tasksCopy = deepClone(tasks);
-
     setTasks([...tasksCopy, newTaskToAdd]);
   };
 
+  const handleDelete = async (label) => {
+    await deleteTaskInDB(label);
+    const tasksCopy = deepClone(tasks);
+    const newTasksFiltered = tasksCopy.filter((task) => task.label !== label);
+    setTasks(newTasksFiltered);
+  };
+
   const fetchTasks = async () => {
-    const tasks = await getTasks();
-    setTasks(tasks);
+    const tasksReceived = await getTasks();
+    setTasks(tasksReceived);
   };
 
   useEffect(() => {
@@ -34,6 +42,9 @@ const Home = () => {
     tasks,
     setTasks,
     handleAdd,
+    handleDelete,
+    searchValue, 
+    setSearchValue
   };
 
   // JSX

@@ -1,26 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { styled } from "styled-components";
-import { valueToFilter } from "../../../../utils";
 import TaskContext from "../../../../context/TaskContext";
-import { getTasks } from "../../../../api/tasksAPI";
 import { theme } from "../../../../theme";
 
 const SearchBar = () => {
-  const { tasks, setTasks } = useContext(TaskContext);
-  const [searchValue, setSearchValue] = useState(""); // État pour stocker la valeur de recherche
+  const { searchValue, setSearchValue } = useContext(TaskContext);
 
-  const handleSearch = async (e) => {
+  const handleChange = async (e) => {
     const newSearchValue = e.target.value.toLowerCase();
     setSearchValue(newSearchValue);
-
-    if (newSearchValue === "") {
-      // Réinitialisation des tâches depuis la base de données
-      const allTasksFromDB = await getTasks(); // Utilisation de getTasks pour récupérer les tâches
-      setTasks(allTasksFromDB);
-    } else {
-      const filtered = valueToFilter(tasks, newSearchValue);
-      setTasks(filtered);
-    }
   };
 
   return (
@@ -33,7 +21,7 @@ const SearchBar = () => {
           className="search-input"
           placeholder="Rechercher une tâche ..."
           value={searchValue}
-          onChange={handleSearch}
+          onChange={handleChange}
         />
       </label>
     </SearchBarStyled>

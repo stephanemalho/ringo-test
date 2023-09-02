@@ -16,7 +16,7 @@ export const taskData = (newTask) => {
   return newTaskData;
 };
 
-export function valueToFilter(tasksToFilter, searchValue) {
+export function tasksToFilter(tasksToFilter, searchValue) {
   const filteredTasks = tasksToFilter.filter((task) => {
     const lowerCaseSearchValue = searchValue.toLowerCase();
     return (
@@ -37,7 +37,6 @@ export function filterTasks(tasks, taskLabel, setTasks) {
         end_date: formatDateToUTC(new Date()).toString(),
       };
     }
-    console.log("task dans newTaskValue:", task);
     return task;
   });
   setTasks(updatedTasks);
@@ -45,6 +44,14 @@ export function filterTasks(tasks, taskLabel, setTasks) {
     if (task.label === taskLabel) {
       updateTaskInDB(task.label, task.end_date);
     }
+  });
+}
+
+export function filterSearchedTasks(tasks, searchValue) {
+  return tasks.filter((task) => {
+    const searchedValue = searchValue.toLowerCase();
+    const hasSearchedValue = task.label.toLowerCase().includes(searchedValue);
+    return searchedValue === "" ? task : hasSearchedValue;
   });
 }
 

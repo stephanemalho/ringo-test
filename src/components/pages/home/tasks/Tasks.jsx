@@ -3,16 +3,17 @@ import Task from "./task/Task";
 import TaskContext from "../../../../context/TaskContext";
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
+import { filterSearchedTasks } from "../../../../utils";
 
 /* eslint-disable react/prop-types */
 const Tasks = () => {
-  const { tasks } = useContext(TaskContext);
+  const { tasks, searchValue } = useContext(TaskContext);
+  const filteredTask = filterSearchedTasks(tasks, searchValue);
 
   if (tasks.length === 0) return null;
-
   return (
     <TasksStyled>
-      {tasks
+      {filteredTask
         .map((task) => (
           <Task
             key={task.label}
