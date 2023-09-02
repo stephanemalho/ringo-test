@@ -1,5 +1,4 @@
 import moment from "moment";
-import { updateTaskInDB } from "../api/tasksAPI";
 
 export const hasEndDate = (value) => {
   return value === "" ? false : true;
@@ -32,11 +31,15 @@ export function tasksToFilter(tasksToFilter, searchValue) {
 
 export function filterSearchedTasks(tasks, searchValue) {
   return tasks.filter((task) => {
+    const { label, start_date, end_date } = task;
     const searchedValue = searchValue.toLowerCase();
-    const hasSearchedValueInLabel = task.label.toLowerCase().includes(searchedValue);
-    const hasSearchedValueInEndDate = task.end_date.includes(searchedValue);
-    const hasSearchedValueInStartDate = task.start_date.includes(searchedValue);  
-    const hasSearchedValue = hasSearchedValueInLabel || hasSearchedValueInEndDate || hasSearchedValueInStartDate;
+    const hasSearchedValueInLabel = label.toLowerCase().includes(searchedValue);
+    const hasSearchedValueInEndDate = end_date.includes(searchedValue);
+    const hasSearchedValueInStartDate = start_date.includes(searchedValue);
+    const hasSearchedValue =
+      hasSearchedValueInLabel ||
+      hasSearchedValueInEndDate ||
+      hasSearchedValueInStartDate;
     return searchedValue === "" ? task : hasSearchedValue;
   });
 }
